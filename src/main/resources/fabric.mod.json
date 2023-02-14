@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "educationmod",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Education Mod",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Karim Salem"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.karim.example.ExampleMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "educationmod.mixins.json"
   ],
 
   "depends": {
