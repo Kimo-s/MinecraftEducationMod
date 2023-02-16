@@ -1,22 +1,20 @@
-package net.karim.ExampleMod;
+package net.karim.edu;
 
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.networking.v1.S2CPlayChannelEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Material;
+import net.karim.edu.Item.ModItems;
+import net.karim.edu.block.ModBlocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.rmi.registry.Registry;
 
 
 public class ExampleMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("modid");
-	//public static final Block EXAMPLE_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f));
+	public static final String MOD_ID = "educationmod";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
 
 	@Override
 	public void onInitialize() {
@@ -24,6 +22,7 @@ public class ExampleMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		ModBlocks.registerModBlocks();
+		ModItems.registerModItems();
 	}
 }

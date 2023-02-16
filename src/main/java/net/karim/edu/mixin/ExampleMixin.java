@@ -1,6 +1,6 @@
-package net.karim.ExampleMod.mixin;
+package net.karim.edu.mixin;
 
-import net.karim.ExampleMod.ExampleMod;
+import net.karim.edu.ExampleMod;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
