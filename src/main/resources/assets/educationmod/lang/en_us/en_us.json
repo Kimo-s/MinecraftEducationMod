@@ -1,4 +1,10 @@
 {
-  "item.educationmod.test_item": "Test Item",
-  "block.educationmod.test_block": "Test block"
+  "item.educationmod.oxygen_item": "Oxygen",
+  "item.educationmod.hydrogen_item": "Hydrogen",
+  "item.educationmod.iron_item": "Iron",
+  "item.educationmod.gps" : "GPS locate",
+  "item.educationmod.chem_table" : "Chemistry Table",
+
+  "block.educationmod.chem_table": "Chemistry Table"
+
 }

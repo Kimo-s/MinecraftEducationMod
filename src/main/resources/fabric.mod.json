@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.karim.edu.ExampleMod"
+    ],
+    "client": [
+      "net.karim.edu.ExampleModClient"
     ]
   },
   "mixins": [

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.karim.edu.ExampleMod;
+import net.karim.edu.Item.ModItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
@@ -18,17 +19,19 @@ import net.minecraft.util.Identifier;
 public class ModBlocks {
 
 
-    public static final Block test_block = registerBlock("test_block", ItemGroups.INGREDIENTS, new Block(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).collidable(true).strength(6f).requiresTool()));
+    public static final Block CHEM_TABLE = registerBlock("chem_table", ModItemGroup.ELEMENTS, new ChemTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(6f)));
 
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);
+        ExampleMod.LOGGER.info("Registering block: " + name);
         return Registry.register(Registries.BLOCK, new Identifier(ExampleMod.MOD_ID, name), block);
     }
 
     private static Item registerBlockItem(String name, ItemGroup group, Block block) {
         BlockItem item = new BlockItem(block, new FabricItemSettings());
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add((item)));
+
         return Registry.register(Registries.ITEM, new Identifier(ExampleMod.MOD_ID, name), item);
     }
 
