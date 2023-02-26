@@ -1,0 +1,11 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "output": {
+    "item": "educationmod:oxygen_item"
+  }
+}
