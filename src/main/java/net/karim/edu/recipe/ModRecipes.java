@@ -11,5 +11,9 @@ public class ModRecipes {
                 ChemTableRecipe.Serializer.INSTANCE);
         Registry.register(Registries.RECIPE_TYPE, new Identifier(ExampleMod.MOD_ID, ChemTableRecipe.Type.ID),
                 ChemTableRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(ExampleMod.MOD_ID, DecomposerTableRecipe.Serializer.ID),
+                DecomposerTableRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, new Identifier(ExampleMod.MOD_ID, DecomposerTableRecipe.Type.ID),
+                DecomposerTableRecipe.Type.INSTANCE);
     }
 }

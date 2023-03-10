@@ -1,4 +1,4 @@
-package net.karim.edu.block;
+package net.karim.edu.block.blocks;
 
 import net.karim.edu.block.entity.ChemTableBlockEntity;
 import net.karim.edu.block.entity.ModBlockEntities;

@@ -11,10 +11,14 @@ import net.minecraft.item.Item;
 public class ModItems {
 
     public static final Item test_item = registerItem("test_item", new Item(new FabricItemSettings().fireproof()));
-    public static final Item GPS_ITEM = registerItem("gps", new Item(new FabricItemSettings().fireproof()));
+    public static final Item GPS_ITEM = registerItem("gps", new element(new FabricItemSettings().fireproof()));
     public static final Item OXYGEN_ITEM = registerItem("oxygen_item", new Item(new FabricItemSettings().fireproof()));
     public static final Item HYDREGON_ITEM = registerItem("hydrogen_item", new Item(new FabricItemSettings().fireproof()));
     public static final Item IRON_ITEM = registerItem("iron_item", new Item(new FabricItemSettings().fireproof()));
+    public static final Item Cu_ITEM = registerItem("cu_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item P_ITEM = registerItem("p_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item N_ITEM = registerItem("n_elem", new Item(new FabricItemSettings().fireproof()));
+
 
     private static Item registerItem(String name, Item item){
         ExampleMod.LOGGER.info("Registered Item: " + name);

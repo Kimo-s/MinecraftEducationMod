@@ -1,8 +1,8 @@
 {
-  "type": "educationmod:chem_table",
+  "type": "educationmod:decomposer_table",
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "item": "minecraft:dirt"
     }
   ],
   "output": [
@@ -11,6 +11,9 @@
     },
     {
       "item": "educationmod:hydrogen_item"
+    },
+    {
+      "item": "educationmod:p_elem"
     }
   ]
 }

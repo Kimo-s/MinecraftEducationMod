@@ -1,0 +1,17 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ore"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:iron_item"
+    },
+    {
+      "item": "educationmod:iron_item"
+    }
+  ],
+  "exp": 100
+}

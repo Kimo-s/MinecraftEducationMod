@@ -9,27 +9,34 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class ChemTableScreenHandler extends ScreenHandler {
+public class DecomposerTableScreenHandler extends ScreenHandler {
     private final  Inventory inventory;
 
-    public ChemTableScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(4));
+    public DecomposerTableScreenHandler(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new SimpleInventory(10));
     }
 
-    public ChemTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
-        super(ModScreenHandlers.CHEM_TABLE_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 4);
+    public DecomposerTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+        super(ModScreenHandlers.DECOMPOSER_SCREEN_HANDLER, syncId);
+        checkSize(inventory, 10);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
 
+        int offset = 10;
 
-        this.addSlot(new Slot(inventory, 0, 19, 34));
-        this.addSlot(new Slot(inventory, 1, 58, 34));
-        this.addSlot(new ModResultSlot(inventory, 2, 108, 34));
-        this.addSlot(new ModResultSlot(inventory, 3, 143, 34));
+        this.addSlot(new Slot(inventory, 0, 9, 50-offset));
+        this.addSlot(new ModResultSlot(inventory, 1, 56, 22-offset));
+        this.addSlot(new ModResultSlot(inventory, 2, 96, 22-offset));
+        this.addSlot(new ModResultSlot(inventory, 3, 131, 22-offset));
+        this.addSlot(new ModResultSlot(inventory, 4, 56, 50-offset));
+        this.addSlot(new ModResultSlot(inventory, 5, 96, 50-offset));
+        this.addSlot(new ModResultSlot(inventory, 6, 131, 50-offset));
+        this.addSlot(new ModResultSlot(inventory, 7, 56, 78-offset));
+        this.addSlot(new ModResultSlot(inventory, 8, 96, 78-offset));
+        this.addSlot(new ModResultSlot(inventory, 9, 131, 78-offset));
 
-        addPlayerInventory(playerInventory, 0, 0);
-        addPlayerHotbar(playerInventory, 0, 0);
+        addPlayerInventory(playerInventory, 0, 8);
+        addPlayerHotbar(playerInventory, 0, 8);
     }
 
     @Override

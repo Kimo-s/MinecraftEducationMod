@@ -1,10 +1,14 @@
 {
   "item.educationmod.oxygen_item": "Oxygen",
+  "item.educationmod.cu_elem": "Copper",
+  "item.educationmod.n_elem": "Nitrogen",
+  "item.educationmod.p_elem": "Phosphorus",
   "item.educationmod.hydrogen_item": "Hydrogen",
   "item.educationmod.iron_item": "Iron",
   "item.educationmod.gps" : "GPS locate",
   "item.educationmod.chem_table" : "Chemistry Table",
+  "item.educationmod.decomposer_table" : "Decomposer Table",
 
-  "block.educationmod.chem_table": "Chemistry Table"
-
+  "block.educationmod.chem_table": "Chemistry Table",
+  "block.educationmod.decomposer_table": "Decomposer Table"
 }

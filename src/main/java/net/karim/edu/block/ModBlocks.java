@@ -5,12 +5,14 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.karim.edu.ExampleMod;
 import net.karim.edu.Item.ModItemGroup;
+import net.karim.edu.block.blocks.ChemTableBlock;
+import net.karim.edu.block.blocks.DecomposerTableBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.DeadCoralBlock;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -20,7 +22,7 @@ public class ModBlocks {
 
 
     public static final Block CHEM_TABLE = registerBlock("chem_table", ModItemGroup.ELEMENTS, new ChemTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(6f)));
-
+    public static final Block DECOMPOSER_TABLE = registerBlock("decomposer_table", ModItemGroup.ELEMENTS, new DecomposerTableBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);

@@ -6,14 +6,16 @@ import com.google.gson.JsonObject;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.TeamS2CPacket;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class ChemTableRecipe implements Recipe<SimpleInventory> {
+public class DecomposerTableRecipe implements Recipe<SimpleInventory> {
 
     private final Identifier id;
     private final ItemStack output;
@@ -22,7 +24,7 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
     private final int exp;
 
 
-    public ChemTableRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, DefaultedList<ItemStack> outputs, int exp) {
+    public DecomposerTableRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, DefaultedList<ItemStack> outputs, int exp) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
@@ -47,8 +49,7 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
         }
 
 
-        return (recipeItems.get(0).test(inventory.getStack(0))
-                || recipeItems.get(0).test(inventory.getStack(1))) && !(inventory.getStack(0).isEmpty() && inventory.getStack(1).isEmpty());
+        return recipeItems.get(0).test(inventory.getStack(0));
     }
 
     @Override
@@ -81,21 +82,21 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<ChemTableRecipe> {
+    public static class Type implements RecipeType<DecomposerTableRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
-        public static final String ID = "chem_table";
+        public static final String ID = "decomposer_table";
     }
 
-    public static class Serializer implements RecipeSerializer<ChemTableRecipe> {
+    public static class Serializer implements RecipeSerializer<DecomposerTableRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "chem_table";
+        public static final String ID = "decomposer_table";
         // this is the name given in the json file
 
         @Override
-        public ChemTableRecipe read(Identifier id, JsonObject json) {
+        public DecomposerTableRecipe read(Identifier id, JsonObject json) {
             JsonArray outputsJson = JsonHelper.getArray(json, "output");
-            DefaultedList<ItemStack> outputs = DefaultedList.ofSize(2, ItemStack.EMPTY);
+            DefaultedList<ItemStack> outputs = DefaultedList.ofSize(10, ItemStack.EMPTY);
 
             for (int i = 0; i < outputsJson.size(); i++) {
                 outputs.set(i, Ingredient.fromJson(outputsJson.get(i)).getMatchingStacks()[0]);
@@ -104,7 +105,7 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
             ItemStack output = Ingredient.fromJson(outputsJson.get(0)).getMatchingStacks()[0];
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1, Ingredient.EMPTY);
 
             for (int i = 0; i < ingredients.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
@@ -116,11 +117,11 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
                 exp = xpJson.getAsInt();
             }
 
-            return new ChemTableRecipe(id, output, inputs, outputs, exp);
+            return new DecomposerTableRecipe(id, output, inputs, outputs, exp);
         }
 
         @Override
-        public ChemTableRecipe read(Identifier id, PacketByteBuf buf) {
+        public DecomposerTableRecipe read(Identifier id, PacketByteBuf buf) {
             DefaultedList<ItemStack> outputs = DefaultedList.ofSize(buf.readInt(), ItemStack.EMPTY);
 
             for (int i = 0; i < outputs.size(); i++) {
@@ -139,11 +140,11 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
                 exp = buf.readInt();
             }
 
-            return new ChemTableRecipe(id, output, inputs, outputs, exp);
+            return new DecomposerTableRecipe(id, output, inputs, outputs, exp);
         }
 
         @Override
-        public void write(PacketByteBuf buf, ChemTableRecipe recipe) {
+        public void write(PacketByteBuf buf, DecomposerTableRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
