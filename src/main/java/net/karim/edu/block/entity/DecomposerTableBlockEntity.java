@@ -30,7 +30,6 @@ import java.util.Random;
 public class DecomposerTableBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(10, ItemStack.EMPTY);
 
-
     public DecomposerTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DECOMPOSER_TABLE_ENTITY, pos, state);
     }
@@ -65,6 +64,7 @@ public class DecomposerTableBlockEntity extends BlockEntity implements NamedScre
 
     @Override
     public void onOpen(PlayerEntity player) {
+
         ImplementedInventory.super.onOpen(player);
     }
 
@@ -76,13 +76,13 @@ public class DecomposerTableBlockEntity extends BlockEntity implements NamedScre
             return;
         }
 
-        if(hasRecipe(entity) ){
+        if(hasRecipe(entity)){
             craftItem(entity);
-
         }
 
-
     }
+
+
 
     private static void craftItem(DecomposerTableBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());
@@ -94,23 +94,22 @@ public class DecomposerTableBlockEntity extends BlockEntity implements NamedScre
         Optional<DecomposerTableRecipe> recipe = entity.getWorld().getRecipeManager()
                 .getFirstMatch(DecomposerTableRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
-        if(hasRecipe(entity)) {
-            int intputStack = entity.getStack(0).getCount();
-            entity.removeStack(0, intputStack);
+            if(hasRecipe(entity)) {
+                int intputStack = entity.getStack(0).getCount();
+
+                for(int i = 1; i < 10; i++){
+                    entity.setStack(i, new ItemStack(recipe.get().getOutputArr().get(i-1).getItem(),
+                            (entity.getStack(i-1).getCount() + intputStack)));
+                    ExampleMod.LOGGER.info("Crafting item " + recipe.get().getOutputArr().get(i-1).getItem() + " Count: " + (entity.getStack(i-1).getCount() + intputStack));
+                }
 
 
-            for(int i = 1; i < 10; i++){
-                entity.setStack(i, new ItemStack(recipe.get().getOutputArr().get(i-1).getItem(),
-                        (entity.getStack(i-1).getCount() + intputStack)));
-                ExampleMod.LOGGER.info("Crafting item " + recipe.get().getOutputArr().get(i-1).getItem() + " Count: " + (entity.getStack(i-1).getCount() + intputStack));
+                BlockPos pos = entity.getPos();
+                PlayerEntity player= entity.getWorld().getClosestPlayer(pos.getX()*1.0f, pos.getY()*1.0f, pos.getZ()*1.0f, 10, false);
+                if(player != null){
+                    player.addExperience(recipe.get().getExp());
+                }
             }
-
-            BlockPos pos = entity.getPos();
-            PlayerEntity player= entity.getWorld().getClosestPlayer(pos.getX()*1.0f, pos.getY()*1.0f, pos.getZ()*1.0f, 10, false);
-            if(player != null){
-                player.addExperience(recipe.get().getExp());
-            }
-        }
     }
 
     private static boolean hasRecipe(DecomposerTableBlockEntity entity) {
@@ -130,8 +129,6 @@ public class DecomposerTableBlockEntity extends BlockEntity implements NamedScre
             }
         }
 
-//        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 2)
-//                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem(), 2);
         return toRet;
     }
 

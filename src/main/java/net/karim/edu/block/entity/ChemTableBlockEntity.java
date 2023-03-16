@@ -96,13 +96,27 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
                 .getFirstMatch(ChemTableRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
         if(hasRecipe(entity)) {
-            entity.removeStack(1, 1);
-            entity.removeStack(0, 1);
+            int stackOneCount = entity.getStack(0).getCount();
+            int stackTwoCount = entity.getStack(1).getCount();
+            int stacksToRemove;
+            if(stackTwoCount == 0){
+                stacksToRemove = stackOneCount;
+            } else if (stackOneCount == 0) {
+                stacksToRemove = stackTwoCount;
+            } else {
+                stacksToRemove = Math.min(stackOneCount, stackTwoCount);
+            }
+
+
+            entity.removeStack(1, stacksToRemove);
+            entity.removeStack(0, stacksToRemove);
 
             entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(),
-                    entity.getStack(2).getCount() + 1));
+                    entity.getStack(2).getCount() + stacksToRemove));
             entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(),
-                    entity.getStack(3).getCount() + 1));
+                    entity.getStack(3).getCount() + stacksToRemove));
+
+            ExampleMod.LOGGER.info("Crafting chem table recipe with this many stacks: " + stacksToRemove);
 
             BlockPos pos = entity.getPos();
             PlayerEntity player= entity.getWorld().getClosestPlayer(pos.getX()*1.0f, pos.getY()*1.0f, pos.getZ()*1.0f, 10, false);
@@ -121,17 +135,15 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
         Optional<ChemTableRecipe> match = entity.getWorld().getRecipeManager()
                 .getFirstMatch(ChemTableRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
-//        boolean toRet = match.isPresent();
-//        if(toRet){
-//            for(int i = 0; i < match.get().getOutputArr().size(); i++){
-//                toRet = toRet && canInsertAmountIntoOutputSlot(inventory, i+2) && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem(), i+2);
-//
-//            }
-//        }
+        boolean toRet = match.isPresent();
+        if(toRet){
+            for(int i = 2; i < 4; i++){
+                toRet = toRet && canInsertAmountIntoOutputSlot(inventory, i) && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem(), i);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 2)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem(), 2);
-    //    return toRet;
+            }
+        }
+
+       return toRet;
     }
 
 

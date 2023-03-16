@@ -18,7 +18,8 @@ public class ModItems {
     public static final Item Cu_ITEM = registerItem("cu_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item P_ITEM = registerItem("p_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item N_ITEM = registerItem("n_elem", new Item(new FabricItemSettings().fireproof()));
-
+    public static final Item K_ITEM = registerItem("k_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item S_ITEM = registerItem("s_elem", new Item(new FabricItemSettings().fireproof()));
 
     private static Item registerItem(String name, Item item){
         ExampleMod.LOGGER.info("Registered Item: " + name);

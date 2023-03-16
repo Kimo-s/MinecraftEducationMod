@@ -1,0 +1,13 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:gps"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ]
+}

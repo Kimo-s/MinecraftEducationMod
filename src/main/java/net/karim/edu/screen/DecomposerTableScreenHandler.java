@@ -1,5 +1,6 @@
 package net.karim.edu.screen;
 
+import net.karim.edu.ExampleMod;
 import net.karim.edu.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,12 +9,29 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 
 public class DecomposerTableScreenHandler extends ScreenHandler {
     private final  Inventory inventory;
 
     public DecomposerTableScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(10));
+    }
+
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        for(int i = 1; i < 10; i++){
+            if(slotIndex == i){
+                this.getSlot(0).setStack(ItemStack.EMPTY);
+            }
+        }
+
+        if(slotIndex == 0){
+            for(int i = 1; i < 10; i++) {
+                this.getSlot(i).setStack(ItemStack.EMPTY);
+            }
+        }
+        super.onSlotClick(slotIndex, button, actionType, player);
     }
 
     public DecomposerTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {

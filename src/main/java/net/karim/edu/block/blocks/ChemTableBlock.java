@@ -23,6 +23,8 @@ public class ChemTableBlock extends BlockWithEntity implements BlockEntityProvid
     }
 
 
+
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

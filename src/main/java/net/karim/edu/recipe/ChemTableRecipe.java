@@ -48,7 +48,10 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
 
 
         return (recipeItems.get(0).test(inventory.getStack(0))
-                || recipeItems.get(0).test(inventory.getStack(1))) && !(inventory.getStack(0).isEmpty() && inventory.getStack(1).isEmpty());
+                || recipeItems.get(0).test(inventory.getStack(1)))
+                && (recipeItems.get(1).test(inventory.getStack(0))
+                || recipeItems.get(1).test(inventory.getStack(1)))
+                && !(inventory.getStack(0).isEmpty() && inventory.getStack(1).isEmpty());
     }
 
     @Override
