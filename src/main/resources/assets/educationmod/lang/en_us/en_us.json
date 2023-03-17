@@ -10,5 +10,6 @@
   "item.educationmod.decomposer_table" : "Decomposer Table",
 
   "block.educationmod.chem_table": "Chemistry Table",
-  "block.educationmod.decomposer_table": "Decomposer Table"
+  "block.educationmod.decomposer_table": "Decomposer Table",
+  "block.educationmod.lock_block": "Lock Block"
 }

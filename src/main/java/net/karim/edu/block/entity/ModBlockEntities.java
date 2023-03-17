@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class ModBlockEntities {
     public static BlockEntityType<ChemTableBlockEntity> CHEM_TABLE_ENTITY;
     public static BlockEntityType<DecomposerTableBlockEntity> DECOMPOSER_TABLE_ENTITY;
+    public static BlockEntityType<LockBlockEntity> LOCK_BLOCK_ENTITY;
 
     public static void registerBlockEntities(){
         CHEM_TABLE_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
@@ -23,5 +24,8 @@ public class ModBlockEntities {
         DECOMPOSER_TABLE_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
                 new Identifier(ExampleMod.MOD_ID, "decomposer_table"),
                 FabricBlockEntityTypeBuilder.create(DecomposerTableBlockEntity::new, ModBlocks.DECOMPOSER_TABLE).build(null));
+        LOCK_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+                new Identifier(ExampleMod.MOD_ID, "lock_table"),
+                FabricBlockEntityTypeBuilder.create(LockBlockEntity::new, ModBlocks.LOCK_BLOCK).build(null));
     }
 }
