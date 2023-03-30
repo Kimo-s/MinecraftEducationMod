@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:cu_elem"
+    },
+    {
+      "item": "educationmod:oxygen_item"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:cat_spawn_egg"
+    }
+  ]
+}

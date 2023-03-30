@@ -4,6 +4,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.karim.edu.ExampleMod;
 import net.karim.edu.Item.ModItems;
+import net.karim.edu.block.entity.ChemTableBlockEntity;
+import net.karim.edu.block.entity.ModBlockEntities;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -11,6 +17,8 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -49,15 +57,29 @@ public class RocketEntity extends ThrownItemEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 10000);
+        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 100);
     }
 
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if(!this.world.isClient){
+            BlockPos pos = new BlockPos(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ());
+            int widthOfArea = 6;
+            for(int i = 0; i < widthOfArea;i++) {
+                for (int x = 0; x < widthOfArea; x++) {
+                    for (int y = 0; y < widthOfArea; y++) {
+                        BlockPos tempPos = pos.offset(Direction.UP, i-widthOfArea/2).offset(Direction.EAST, x-widthOfArea/2).offset(Direction.NORTH, y-widthOfArea/2);
+                        if(world.isAir(tempPos)) {
+                            world.setBlockState(tempPos, Blocks.FIRE.getDefaultState());
+                        }
+                    }
+                }
+            }
+
+            }
+
             this.world.sendEntityStatus(this, (byte)3);
             this.kill();
-        }
     }
 }

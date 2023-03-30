@@ -3,6 +3,7 @@ package net.karim.edu.Item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.karim.edu.ExampleMod;
+import net.minecraft.item.PotionItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -20,6 +21,8 @@ public class ModItems {
     public static final Item N_ITEM = registerItem("n_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item K_ITEM = registerItem("k_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item S_ITEM = registerItem("s_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item C_ITEM = registerItem("c_elem", new Item(new FabricItemSettings().fireproof()));
+
 
     private static Item registerItem(String name, Item item){
         ExampleMod.LOGGER.info("Registered Item: " + name);

@@ -107,22 +107,16 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
                 stacksToRemove = Math.min(stackOneCount, stackTwoCount);
             }
 
+            entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove));
+            entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(), stacksToRemove));
 
-            entity.removeStack(1, stacksToRemove);
-            entity.removeStack(0, stacksToRemove);
+           // ExampleMod.LOGGER.info("Crafting chem table recipe with this many stacks: " + stacksToRemove);
 
-            entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(),
-                    entity.getStack(2).getCount() + stacksToRemove));
-            entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(),
-                    entity.getStack(3).getCount() + stacksToRemove));
-
-            ExampleMod.LOGGER.info("Crafting chem table recipe with this many stacks: " + stacksToRemove);
-
-            BlockPos pos = entity.getPos();
-            PlayerEntity player= entity.getWorld().getClosestPlayer(pos.getX()*1.0f, pos.getY()*1.0f, pos.getZ()*1.0f, 10, false);
-            if(player != null){
-                player.addExperience(recipe.get().getExp());
-            }
+//            BlockPos pos = entity.getPos();
+//            PlayerEntity player= entity.getWorld().getClosestPlayer(pos.getX()*1.0f, pos.getY()*1.0f, pos.getZ()*1.0f, 10, false);
+//            if(player != null){
+//                player.addExperience(recipe.get().getExp());
+//            }
         }
     }
 

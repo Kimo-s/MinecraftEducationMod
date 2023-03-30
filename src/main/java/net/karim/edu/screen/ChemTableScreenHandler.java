@@ -1,5 +1,6 @@
 package net.karim.edu.screen;
 
+import net.karim.edu.recipe.ChemTableRecipe;
 import net.karim.edu.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,12 +9,47 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
+
+import java.util.Optional;
 
 public class ChemTableScreenHandler extends ScreenHandler {
     private final  Inventory inventory;
 
     public ChemTableScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(4));
+    }
+
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        SimpleInventory inventory = new SimpleInventory(4);
+        for (int i = 0; i < 4; i++) {
+            inventory.setStack(i, this.getSlot(i).getStack());
+        }
+
+
+        Optional<ChemTableRecipe> recipe = player.getWorld().getRecipeManager()
+                .getFirstMatch(ChemTableRecipe.Type.INSTANCE, inventory, player.getWorld());
+        if(recipe.isPresent()){
+            // Remove the input items if the output items were removed by the player
+            for(int i = 2; i < 4; i++){
+                if(slotIndex == i){
+                    this.getSlot(0).setStack(ItemStack.EMPTY);
+                    this.getSlot(1).setStack(ItemStack.EMPTY);
+                    player.addExperience(recipe.get().getExp());
+                }
+            }
+
+            // Remove the output items if the input was removed
+            if(slotIndex == 0 || slotIndex == 1){
+                for(int i = 2; i < 4; i++) {
+                    this.getSlot(i).setStack(ItemStack.EMPTY);
+                }
+            }
+        }
+
+
+        super.onSlotClick(slotIndex, button, actionType, player);
     }
 
     public ChemTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {

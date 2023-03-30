@@ -9,9 +9,8 @@ import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.blocks.ChemTableBlock;
 import net.karim.edu.block.blocks.DecomposerTableBlock;
 import net.karim.edu.block.blocks.LockBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.DeadCoralBlock;
-import net.minecraft.block.Material;
+import net.karim.edu.block.blocks.ToxicAirBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,12 +19,18 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
+import static net.minecraft.block.Blocks.COBBLED_DEEPSLATE;
+
 public class ModBlocks {
 
 
     public static final Block CHEM_TABLE = registerBlock("chem_table", ModItemGroup.ELEMENTS, new ChemTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(6f)));
     public static final Block DECOMPOSER_TABLE = registerBlock("decomposer_table", ModItemGroup.ELEMENTS, new DecomposerTableBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
     public static final Block LOCK_BLOCK = registerBlock("lock_block", ModItemGroup.ELEMENTS, new LockBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(100000f).resistance(1000000)));
+    public static final Block HARDENED_DEEPSLATE_BRICKS = registerBlock("hardened_deepslate_bricks",  ModItemGroup.ELEMENTS, new Block(AbstractBlock.Settings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
+    public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().air().noCollision()));
+
+
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);
         ExampleMod.LOGGER.info("Registering block: " + name);

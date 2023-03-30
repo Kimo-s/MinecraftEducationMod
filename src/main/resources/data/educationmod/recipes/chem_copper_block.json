@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:cu_elem"
+    },
+    {
+      "item": "educationmod:cu_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:copper_block"
+    }
+  ]
+}

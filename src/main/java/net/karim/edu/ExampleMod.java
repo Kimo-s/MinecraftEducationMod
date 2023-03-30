@@ -8,11 +8,13 @@ import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.entity.ModBlockEntities;
+import net.karim.edu.potion.ModPotions;
 import net.karim.edu.projectile.RocketEntity;
 import net.karim.edu.recipe.ModRecipes;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.loot.LootTables;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -44,6 +46,7 @@ public class ExampleMod implements ModInitializer {
 
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
+		ModPotions.registerModPotions();
 
 		ModBlockEntities.registerBlockEntities();
 		ModRecipes.registerRecipes();

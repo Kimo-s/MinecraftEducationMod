@@ -11,5 +11,9 @@
 
   "block.educationmod.chem_table": "Chemistry Table",
   "block.educationmod.decomposer_table": "Decomposer Table",
-  "block.educationmod.lock_block": "Lock Block"
+  "block.educationmod.lock_block": "Lock Block",
+  "block.educationmod.hardened_deepslate_bricks": "Hardened Deepslate Bricks",
+
+  "item.minecraft.splash_potion.effect.haste_potion": "Haste Splash Potion",
+  "item.minecraft.lingering_potion.effect.haste_potion": "Haste Lingering Potion"
 }

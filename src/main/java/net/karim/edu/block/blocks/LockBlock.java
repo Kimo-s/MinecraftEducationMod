@@ -31,7 +31,7 @@ public class LockBlock extends Block implements BlockEntityProvider{
                               PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             LockBlockEntity entity = (LockBlockEntity) world.getBlockEntity(pos);
-
+            
             String handItem = player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().getName().getString();
 
             if(entity.lockDecided) {
