@@ -24,6 +24,12 @@ public class ModItems {
     public static final Item C_ITEM = registerItem("c_elem", new Item(new FabricItemSettings().fireproof()));
 
 
+    //molecules
+    public static final Item O2_ITEM = registerItem("o2_elem", new BlueFireNA2O2(new FabricItemSettings().fireproof()));
+
+
+
+
     private static Item registerItem(String name, Item item){
         ExampleMod.LOGGER.info("Registered Item: " + name);
         ItemGroupEvents.modifyEntriesEvent(ModItemGroup.ELEMENTS).register(entries -> entries.add((item)));

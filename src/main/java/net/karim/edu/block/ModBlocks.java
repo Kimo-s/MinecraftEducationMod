@@ -6,10 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.karim.edu.ExampleMod;
 import net.karim.edu.Item.ModItemGroup;
 import net.karim.edu.Item.ModItems;
-import net.karim.edu.block.blocks.ChemTableBlock;
-import net.karim.edu.block.blocks.DecomposerTableBlock;
-import net.karim.edu.block.blocks.LockBlock;
-import net.karim.edu.block.blocks.ToxicAirBlock;
+import net.karim.edu.block.blocks.*;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -29,7 +26,7 @@ public class ModBlocks {
     public static final Block LOCK_BLOCK = registerBlock("lock_block", ModItemGroup.ELEMENTS, new LockBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(100000f).resistance(1000000)));
     public static final Block HARDENED_DEEPSLATE_BRICKS = registerBlock("hardened_deepslate_bricks",  ModItemGroup.ELEMENTS, new Block(AbstractBlock.Settings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
     public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().air().noCollision()));
-
+    public static final Block BLUE_FIRE = registerBlock("blue_fire",  ModItemGroup.ELEMENTS, new BlueFireBlock(FabricBlockSettings.of(Material.FIRE, MapColor.BLUE).noCollision().breakInstantly().luminance(state -> 15).sounds(BlockSoundGroup.WOOL)));
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);
