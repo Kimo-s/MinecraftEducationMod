@@ -1,0 +1,5 @@
+{
+  "variants" : {
+    "" : {"model" :  "educationmod:block/hardened_bricks"}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:hydrogen_item"
+    },
+    {
+      "item": "educationmod:hydrogen_item"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:h2_elem"
+    }
+  ]
+}

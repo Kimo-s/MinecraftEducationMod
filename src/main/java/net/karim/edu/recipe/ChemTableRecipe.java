@@ -22,7 +22,8 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
     private final int exp;
 
 
-    public ChemTableRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, DefaultedList<ItemStack> outputs, int exp) {
+    public ChemTableRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, DefaultedList<ItemStack> outputs,
+                           int exp) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
@@ -118,6 +119,12 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
             if(xpJson != null && !xpJson.isJsonNull()){
                 exp = xpJson.getAsInt();
             }
+
+//            JsonArray countArr = JsonHelper.getArray(json, "inputCount");
+//            DefaultedList<Integer> counts = DefaultedList.ofSize(2, 0);
+//            for(int i = 0; i < ingredients.size(); i++){
+//                counts.set(i, countArr.getAsInt());
+//            }
 
             return new ChemTableRecipe(id, output, inputs, outputs, exp);
         }

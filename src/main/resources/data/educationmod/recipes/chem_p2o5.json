@@ -2,15 +2,15 @@
   "type": "educationmod:chem_table",
   "ingredients": [
     {
-      "item": "educationmod:iron_item"
+      "item": "educationmod:o2_elem"
     },
     {
-      "item": "educationmod:c_elem"
+      "item": "educationmod:p_elem"
     }
   ],
   "output": [
     {
-      "item": "minecraft:cat_spawn_egg"
+      "item": "educationmod:p2o5_elem"
     }
   ]
 }

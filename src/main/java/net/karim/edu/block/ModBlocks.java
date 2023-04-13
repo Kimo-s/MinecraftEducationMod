@@ -24,9 +24,14 @@ public class ModBlocks {
     public static final Block CHEM_TABLE = registerBlock("chem_table", ModItemGroup.ELEMENTS, new ChemTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(6f)));
     public static final Block DECOMPOSER_TABLE = registerBlock("decomposer_table", ModItemGroup.ELEMENTS, new DecomposerTableBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
     public static final Block LOCK_BLOCK = registerBlock("lock_block", ModItemGroup.ELEMENTS, new LockBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(100000f).resistance(1000000)));
-    public static final Block HARDENED_DEEPSLATE_BRICKS = registerBlock("hardened_deepslate_bricks",  ModItemGroup.ELEMENTS, new Block(AbstractBlock.Settings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
+    public static final Block HARDENED_BRICKS = registerBlock("hardened_bricks",  ModItemGroup.ELEMENTS, new Block(FabricBlockSettings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
+    public static final Block TITANIUM_ORE = registerBlock("titanium_ore", ModItemGroup.ELEMENTS, new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 3.0f)));
+
     public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().air().noCollision()));
-    public static final Block BLUE_FIRE = registerBlock("blue_fire",  ModItemGroup.ELEMENTS, new BlueFireBlock(FabricBlockSettings.of(Material.FIRE, MapColor.BLUE).noCollision().breakInstantly().luminance(state -> 15).sounds(BlockSoundGroup.WOOL)));
+    public static final Block BLUE_FIRE = registerBlock("blue_fire",  ModItemGroup.ELEMENTS, new BlueFireBlock());
+    public static final Block GREEN_FIRE = registerBlock("green_fire",  ModItemGroup.ELEMENTS, new GreenFireBlock());
+    public static final Block PURPLE_FIRE = registerBlock("purple_fire",  ModItemGroup.ELEMENTS, new PurpleFireBlock());
+    public static final Block GENERIC_FIRE = registerBlock("generic_fire",  ModItemGroup.ELEMENTS, new GenericFireBlock());
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);

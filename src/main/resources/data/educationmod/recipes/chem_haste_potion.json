@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:o2_elem"
+    },
+    {
+      "item": "educationmod:o2_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:splash_potion.effect.haste_potion"
+    }
+  ], "exp": 20
+}

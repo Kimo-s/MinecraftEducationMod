@@ -1,6 +1,9 @@
 package net.karim.edu.Item;
 
 import net.karim.edu.ExampleMod;
+import net.karim.edu.block.ModBlocks;
+import net.karim.edu.block.blocks.BlueFireBlock;
+import net.karim.edu.block.blocks.GreenFireBlock;
 import net.karim.edu.projectile.RocketEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -34,7 +37,7 @@ public class element extends Item {
 
 
         if(!world.isClient){
-            RocketEntity rocket = new RocketEntity(world, user);
+            RocketEntity rocket = new RocketEntity(world, user, (GreenFireBlock) ModBlocks.GREEN_FIRE);
             rocket.setItem(itemStack);
             rocket.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5f, 0f);
 

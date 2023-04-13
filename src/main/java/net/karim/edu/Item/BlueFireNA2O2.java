@@ -3,6 +3,7 @@ package net.karim.edu.Item;
 import net.karim.edu.ExampleMod;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.BlueFireBlock;
+import net.karim.edu.block.blocks.GenericFireBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -23,16 +24,12 @@ public class BlueFireNA2O2 extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
         boolean fired = true;
 
+        //GenericFireBlock.registerDefaultFlammables();
         if(!context.getWorld().isClient){
             BlockPos pos = context.getBlockPos().up();
             if(context.getWorld().isAir(context.getBlockPos().up())){
                 BlockState state;
-//                try{
-//                    state = ((BlueFireBlock) ModBlocks.BLUE_FIRE).getStateForPosition(context.getWorld(), pos);
-//                } catch (Exception e){
-                    state = ModBlocks.BLUE_FIRE.getDefaultState();
-//                    ExampleMod.LOGGER.info("Exception caught: " + e.getMessage());
-//                }
+                state = ((BlueFireBlock)ModBlocks.BLUE_FIRE).getStateForPosition(context.getWorld(), pos);
                 context.getWorld().setBlockState(pos, state, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
                 context.getWorld().emitGameEvent((Entity)context.getPlayer(), GameEvent.BLOCK_PLACE, pos);
             } else {

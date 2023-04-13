@@ -1,0 +1,19 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:ch4_elem"
+    },
+    {
+      "item": "educationmod:o2_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:co2_elem"
+    },
+    {
+      "item": "educationmod:h2o_elem"
+    }
+  ]
+}
