@@ -32,8 +32,8 @@ public class DecomposerTableScreen extends HandledScreen<DecomposerTableScreenHa
         super.init();
         backgroundHeight = 186;
         titleX = ((backgroundWidth - textRenderer.getWidth(title)) / 2);
-//        titleY -= 10;
-//        playerInventoryTitleY += 17;
+        titleY -= 10;
+        playerInventoryTitleY += 17;
     }
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {

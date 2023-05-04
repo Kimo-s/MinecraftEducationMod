@@ -3,6 +3,7 @@ package net.karim.edu.Item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.karim.edu.ExampleMod;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -11,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class ModItems {
 
     public static final Item test_item = registerItem("test_item", new Item(new FabricItemSettings().fireproof()));
-    public static final Item GPS_ITEM = registerItem("gps", new element(new FabricItemSettings().fireproof()));
+    public static final Item FIRE_BOMB = registerItem("fire_bomb", new GenericBomb(new FabricItemSettings().fireproof()));
     public static final Item O_ELEM = registerItem("o_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item HYDREGON_ITEM = registerItem("hydrogen_item", new Item(new FabricItemSettings().fireproof()));
     public static final Item IRON_ITEM = registerItem("iron_item", new Item(new FabricItemSettings().fireproof()));
@@ -40,9 +41,14 @@ public class ModItems {
 
 
     //Titanium tools
-    public static Item TITANIUM_AXE = registerItem("titanium_axe", (Item) new AxeItem(TitaniumMaterial.INSTANCE, 2, -3, new Item.Settings()));
-    public static Item TITANIUM_PICKAXE = registerItem("titanium_pickaxe", (Item) new PickaxeItem(TitaniumMaterial.INSTANCE, 1, -2, new Item.Settings()));
-    public static Item TITANIUM_SWORD = registerItem("titanium_sword", (Item) new PickaxeItem(TitaniumMaterial.INSTANCE, 4, -4, new Item.Settings()));
+    public static Item TITANIUM_AXE = registerItem("titanium_axe", (Item) new AxeItem(TitaniumMaterial.INSTANCE, 3, -3, new Item.Settings()));
+    public static Item TITANIUM_PICKAXE = registerItem("titanium_pickaxe", (Item) new PickaxeItem(TitaniumMaterial.INSTANCE, 2, -2, new Item.Settings()));
+    public static Item TITANIUM_SWORD = registerItem("titanium_sword", (Item) new PickaxeItem(TitaniumMaterial.INSTANCE, 6, -4, new Item.Settings()));
+    //Titanium armor
+    public static final Item DIAMOND_HELMET = registerItem("titanium_helmet", (Item)new ArmorItem(TitaniumArmor.INSTANCE, EquipmentSlot.HEAD, new Item.Settings()));
+    public static final Item DIAMOND_CHESTPLATE = registerItem("titanium_chestplate", (Item)new ArmorItem(TitaniumArmor.INSTANCE, EquipmentSlot.CHEST, new Item.Settings()));
+    public static final Item DIAMOND_LEGGINGS = registerItem("titanium_leggings", (Item)new ArmorItem(TitaniumArmor.INSTANCE, EquipmentSlot.LEGS, new Item.Settings()));
+    public static final Item DIAMOND_BOOTS = registerItem("titanium_boots", (Item)new ArmorItem(TitaniumArmor.INSTANCE, EquipmentSlot.FEET, new Item.Settings()));
 
     private static Item registerItem(String name, Item item){
         ExampleMod.LOGGER.info("Registered Item: " + name);

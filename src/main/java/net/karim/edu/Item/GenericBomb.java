@@ -1,32 +1,22 @@
 package net.karim.edu.Item;
 
-import net.karim.edu.ExampleMod;
 import net.karim.edu.block.ModBlocks;
-import net.karim.edu.block.blocks.BlueFireBlock;
 import net.karim.edu.block.blocks.GreenFireBlock;
 import net.karim.edu.projectile.RocketEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-public class element extends Item {
+public class GenericBomb extends Item {
 
 
-    public element(Item.Settings settings){
+    public GenericBomb(Item.Settings settings){
         super(settings);
     }
 

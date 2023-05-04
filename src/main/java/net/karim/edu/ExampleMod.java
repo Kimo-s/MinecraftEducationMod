@@ -5,12 +5,14 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModification;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.entity.ModBlockEntities;
+import net.karim.edu.event.WorldTimeTickHandler;
 import net.karim.edu.potion.ModPotions;
 import net.karim.edu.projectile.RocketEntity;
 import net.karim.edu.recipe.ModRecipes;
@@ -60,6 +62,7 @@ public class ExampleMod implements ModInitializer {
 
 		ModBlockEntities.registerBlockEntities();
 		ModRecipes.registerRecipes();
+		ServerTickEvents.START_SERVER_TICK.register(new WorldTimeTickHandler());
 
 	}
 }

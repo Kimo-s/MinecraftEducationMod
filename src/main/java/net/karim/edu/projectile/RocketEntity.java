@@ -6,13 +6,6 @@ import net.karim.edu.ExampleMod;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.GenericFireBlock;
-import net.karim.edu.block.entity.ChemTableBlockEntity;
-import net.karim.edu.block.entity.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -21,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -48,7 +40,7 @@ public class RocketEntity extends ThrownItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.GPS_ITEM;
+        return ModItems.FIRE_BOMB;
     }
 
 
@@ -74,17 +66,20 @@ public class RocketEntity extends ThrownItemEntity {
         super.onCollision(hitResult);
         if(!this.world.isClient){
             BlockPos pos = new BlockPos(hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ());
-            int widthOfArea = 2;
-            for(int i = 0; i < widthOfArea;i++) {
-                for (int x = 0; x < widthOfArea; x++) {
-                    for (int y = 0; y < widthOfArea; y++) {
-                        BlockPos tempPos = pos.offset(Direction.UP, i-widthOfArea/2).offset(Direction.EAST, x-widthOfArea/2).offset(Direction.NORTH, y-widthOfArea/2);
-                        if(world.isAir(tempPos)) {
-                            world.setBlockState(tempPos, fireBlock.getDefaultState());
-                        }
-                    }
-                }
+            //int widthOfArea = 1;
+            if(world.isAir(pos)) {
+                world.setBlockState(pos, fireBlock.getDefaultState());
             }
+//            for(int i = 0; i < widthOfArea;i++) {
+//                for (int x = 0; x < widthOfArea; x++) {
+//                    for (int y = 0; y < widthOfArea; y++) {
+//                        BlockPos tempPos = pos.offset(Direction.UP, i-widthOfArea/2).offset(Direction.EAST, x-widthOfArea/2).offset(Direction.NORTH, y-widthOfArea/2);
+//                        if(world.isAir(tempPos)) {
+//                            world.setBlockState(tempPos, fireBlock.getDefaultState());
+//                        }
+//                    }
+//                }
+//            }
 
             }
 

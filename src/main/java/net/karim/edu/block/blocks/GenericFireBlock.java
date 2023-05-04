@@ -49,6 +49,7 @@ public class GenericFireBlock extends FireBlock {
     private final Map<BlockState, VoxelShape> shapesByState;
     private final Object2IntMap<Block> burnChances = new Object2IntOpenHashMap<Block>();
     private final Object2IntMap<Block> spreadChances = new Object2IntOpenHashMap<Block>();
+    public static final Block defaultBlock = ModBlocks.GENERIC_FIRE;
 
     private static final Map<Direction, BooleanProperty> DIRECTION_PROPERTIES = ConnectingBlock.FACING_PROPERTIES.entrySet().stream().filter(entry -> entry.getKey() != Direction.DOWN).collect(Util.toMap());
 
@@ -58,6 +59,7 @@ public class GenericFireBlock extends FireBlock {
         this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)stateT.with(NORTH, false)).with(EAST, false)).with(SOUTH, false)).with(WEST, false)).with(UP, false));
         this.shapesByState = ImmutableMap.copyOf(this.stateManager.getStates().stream().filter(state -> state.get(AGE) == 0).collect(Collectors.toMap(Function.identity(), GenericFireBlock::getShapeForState)));
     }
+
 
     private static VoxelShape getShapeForState(BlockState state) {
         VoxelShape voxelShape = VoxelShapes.empty();
@@ -218,11 +220,22 @@ public class GenericFireBlock extends FireBlock {
     }
 
     private BlockState getStateWithAge(WorldAccess world, BlockPos pos, int age) {
-        BlockState blockState = GenericFireBlock.getState(world, pos);
+        //BlockState blockState = this.getState(world, pos);
+        BlockState blockState = this.getDefaultState();
         if (blockState.isOf(ModBlocks.GENERIC_FIRE)) {
             return (BlockState)blockState.with(AGE, age);
         }
         return blockState;
+    }
+
+    public static BlockState getState(BlockView world, BlockPos pos) {
+        BlockPos blockPos = pos.down();
+        BlockState blockState = world.getBlockState(blockPos);
+        if (SoulFireBlock.isSoulBase(blockState)) {
+            return Blocks.SOUL_FIRE.getDefaultState();
+        }
+
+        return ((GenericFireBlock)defaultBlock).getStateForPosition(world, pos);
     }
 
     private int getSpreadChance(BlockState state) {
@@ -258,6 +271,7 @@ public class GenericFireBlock extends FireBlock {
     }
 
 
+    @Override
     public BlockState getStateForPosition(BlockView world, BlockPos pos) {
         BlockPos blockPos = pos.down();
         BlockState blockState = world.getBlockState(blockPos);

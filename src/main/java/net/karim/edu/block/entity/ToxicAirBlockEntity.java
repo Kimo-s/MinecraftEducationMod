@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.CollisionView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,6 +17,8 @@ public class ToxicAirBlockEntity extends BlockEntity {
     public ToxicAirBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TOXIC_AIR_BLOCK_ENTITY, pos, state);
     }
+
+
 
     @Override
     public void readNbt(NbtCompound nbt) {
@@ -28,16 +31,20 @@ public class ToxicAirBlockEntity extends BlockEntity {
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, ToxicAirBlockEntity entity) {
-        if(world.isClient()){
-            if(world.getTime() % 15 == 0){
+        if(!world.isClient()){
+            if(world.getTime() % 15 == 0 && world.isAir(pos.up())){
                 world.setBlockState(pos.up(), ModBlocks.TOXIC_GAS.getDefaultState());
-                world.markDirty(pos);
                 world.markDirty(pos.up());
+                world.removeBlockEntity(pos);
+                world.removeBlock(pos,true);
+                world.markDirty(pos);
             }
             return;
         }
 
 
     }
+
+
 
 }

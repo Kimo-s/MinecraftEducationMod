@@ -15,6 +15,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 
 import static net.minecraft.block.Blocks.COBBLED_DEEPSLATE;
 
@@ -27,11 +29,16 @@ public class ModBlocks {
     public static final Block HARDENED_BRICKS = registerBlock("hardened_bricks",  ModItemGroup.ELEMENTS, new Block(FabricBlockSettings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
     public static final Block TITANIUM_ORE = registerBlock("titanium_ore", ModItemGroup.ELEMENTS, new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 3.0f)));
 
-    public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().air().noCollision()));
+    public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().noCollision().suffocates(ModBlocks::always)));
     public static final Block BLUE_FIRE = registerBlock("blue_fire",  ModItemGroup.ELEMENTS, new BlueFireBlock());
     public static final Block GREEN_FIRE = registerBlock("green_fire",  ModItemGroup.ELEMENTS, new GreenFireBlock());
     public static final Block PURPLE_FIRE = registerBlock("purple_fire",  ModItemGroup.ELEMENTS, new PurpleFireBlock());
     public static final Block GENERIC_FIRE = registerBlock("generic_fire",  ModItemGroup.ELEMENTS, new GenericFireBlock());
+
+
+    private static boolean always(BlockState state, BlockView world, BlockPos pos) {
+        return true;
+    }
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {
         registerBlockItem(name, group, block);
