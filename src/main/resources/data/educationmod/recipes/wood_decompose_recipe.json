@@ -2,7 +2,7 @@
   "type": "educationmod:decomposer_table",
   "ingredients": [
     {
-      "item": "minecraft:oak_log"
+      "tag": "minecraft:planks"
     }
   ],
   "output": [

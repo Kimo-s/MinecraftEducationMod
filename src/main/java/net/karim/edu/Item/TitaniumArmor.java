@@ -46,7 +46,7 @@ public class TitaniumArmor implements ArmorMaterial {
 
     @Override
     public float getToughness() {
-        return durabilityMultiplier*1.0f;
+        return 4.0f;
     }
 
     @Override
