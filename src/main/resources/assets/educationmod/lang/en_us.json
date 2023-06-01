@@ -9,6 +9,7 @@
   "item.educationmod.fire_bomb" : "Fire Bomb",
   "item.educationmod.chem_table" : "Chemistry Table",
   "item.educationmod.decomposer_table" : "Decomposer Table",
+  "item.educationmod.toxic_fluid_bucket" : "Toxic Fluid Bucket",
 
   "block.educationmod.chem_table": "Chemistry Table",
   "block.educationmod.decomposer_table": "Decomposer Table",
@@ -16,5 +17,6 @@
   "block.educationmod.hardened_deepslate_bricks": "Hardened Deepslate Bricks",
 
   "item.minecraft.splash_potion.effect.haste_potion": "Haste Splash Potion",
-  "item.minecraft.lingering_potion.effect.haste_potion": "Haste Lingering Potion"
+  "item.minecraft.lingering_potion.effect.haste_potion": "Haste Lingering Potion",
+  "entity.minecraft.villager.chemist" : "Chemist"
 }

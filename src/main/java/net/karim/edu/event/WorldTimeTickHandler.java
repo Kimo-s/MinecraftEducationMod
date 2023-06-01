@@ -15,16 +15,17 @@ import java.util.Random;
 
 public class WorldTimeTickHandler implements ServerTickEvents.StartTick {
 
-    int timeBetween = 100;
+    int timeBetween = 3000;
 
     List<String> messages;
     Random rand = new Random();
 
    public  WorldTimeTickHandler(){
        messages = new ArrayList<String>();
-       messages.add("This is a help message!! Use the decomposer with elements from the world to get many elements.");
+       messages.add("This is a help message!! Use the decomposer from the world to get many elements.");
        messages.add("Another help message!");
        messages.add("Even more messages!!");
+
     }
 
     @Override

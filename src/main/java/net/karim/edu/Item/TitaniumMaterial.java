@@ -9,7 +9,7 @@ public class TitaniumMaterial implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return 1600;
+        return 2300;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class TitaniumMaterial implements ToolMaterial {
 
     @Override
     public int getEnchantability() {
-        return 15;
+        return 18;
     }
 
     @Override

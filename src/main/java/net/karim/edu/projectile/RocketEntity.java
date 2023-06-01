@@ -2,7 +2,7 @@ package net.karim.edu.projectile;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.GenericFireBlock;
@@ -26,16 +26,16 @@ public class RocketEntity extends ThrownItemEntity {
     }
 
     public RocketEntity(World world, LivingEntity owner) {
-        super(ExampleMod.rocketEntity, owner, world);
+        super(EduChemMod.rocketEntity, owner, world);
     }
 
     public RocketEntity(World world, LivingEntity owner, GenericFireBlock fireBlock) {
-        super(ExampleMod.rocketEntity, owner, world);
+        super(EduChemMod.rocketEntity, owner, world);
         this.fireBlock = fireBlock;
     }
 
     public RocketEntity(World world, double x, double y, double z) {
-        super(ExampleMod.rocketEntity, x, y, z,  world);
+        super(EduChemMod.rocketEntity, x, y, z,  world);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RocketEntity extends ThrownItemEntity {
         if (status == 3) {
             Random r = new Random();
             for(int i = 0; i < 100; i++){
-                this.world.addParticle(ExampleMod.GREEN_FLAME, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), r.nextDouble()*speedScale - speedScale*0.5, Math.abs(r.nextDouble()*speedScale-0.5*speedScale), r.nextDouble()*speedScale- speedScale*0.5);
+                this.world.addParticle(EduChemMod.GREEN_FLAME, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), r.nextDouble()*speedScale - speedScale*0.5, Math.abs(r.nextDouble()*speedScale-0.5*speedScale), r.nextDouble()*speedScale- speedScale*0.5);
             }
         }
 

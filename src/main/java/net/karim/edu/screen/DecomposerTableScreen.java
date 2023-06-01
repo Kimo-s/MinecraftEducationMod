@@ -1,7 +1,7 @@
 package net.karim.edu.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class DecomposerTableScreen extends HandledScreen<DecomposerTableScreenHandler> {
 
-    private static final Identifier TEXTURE = new Identifier(ExampleMod.MOD_ID, "textures/gui/element_decomposer_gui.png");
+    private static final Identifier TEXTURE = new Identifier(EduChemMod.MOD_ID, "textures/gui/element_decomposer_gui.png");
 
     public DecomposerTableScreen(DecomposerTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

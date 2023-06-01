@@ -1,6 +1,5 @@
 package net.karim.edu.screen;
 
-import net.karim.edu.ExampleMod;
 import net.karim.edu.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:c_elem"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:titanium_sword"
+    }
+  ]
+}

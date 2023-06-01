@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.karim.edu.ExampleMod"
+      "net.karim.edu.EduChemMod"
     ],
     "client": [
-      "net.karim.edu.ExampleModClient"
+      "net.karim.edu.EduChemModClient"
     ]
   },
   "mixins": [

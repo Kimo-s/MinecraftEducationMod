@@ -1,6 +1,7 @@
 package net.karim.edu.Item;
 
 import net.karim.edu.block.ModBlocks;
+import net.karim.edu.block.blocks.GenericFireBlock;
 import net.karim.edu.block.blocks.GreenFireBlock;
 import net.karim.edu.projectile.RocketEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,9 +16,10 @@ import net.minecraft.world.World;
 
 public class GenericBomb extends Item {
 
-
-    public GenericBomb(Item.Settings settings){
+    private GenericFireBlock fireBlock;
+    public GenericBomb(Item.Settings settings, GenericFireBlock fireBlock){
         super(settings);
+        this.fireBlock = fireBlock;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class GenericBomb extends Item {
 
 
         if(!world.isClient){
-            RocketEntity rocket = new RocketEntity(world, user, (GreenFireBlock) ModBlocks.GREEN_FIRE);
+            RocketEntity rocket = new RocketEntity(world, user, fireBlock);
             rocket.setItem(itemStack);
             rocket.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5f, 0f);
 

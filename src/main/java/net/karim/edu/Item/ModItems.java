@@ -2,7 +2,11 @@ package net.karim.edu.Item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
+import net.karim.edu.block.ModBlocks;
+import net.karim.edu.block.blocks.BlueFireBlock;
+import net.karim.edu.block.blocks.PurpleFireBlock;
+import net.karim.edu.fluid.ModFluids;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -12,7 +16,12 @@ import net.minecraft.util.Identifier;
 public class ModItems {
 
     public static final Item test_item = registerItem("test_item", new Item(new FabricItemSettings().fireproof()));
-    public static final Item FIRE_BOMB = registerItem("fire_bomb", new GenericBomb(new FabricItemSettings().fireproof()));
+    public static final Item GUIDE = registerItem("chem_book", (Item)new WrittenBookItem(new FabricItemSettings().maxCount(16)));
+    public static final Item BLOCK_ANALYZER = registerItem("block_analyzer", new BlockAnalyzer(new FabricItemSettings().maxCount(1)));
+    public static final Item FIRE_BOMB = registerItem("fire_bomb", new GenericBomb(new FabricItemSettings().fireproof(), (BlueFireBlock) ModBlocks.BLUE_FIRE));
+    public static final Item FIRE_BOMB_PURPLE = registerItem("fire_bomb_purple", new GenericBomb(new FabricItemSettings().fireproof(), (PurpleFireBlock) ModBlocks.PURPLE_FIRE));
+
+    //elements
     public static final Item O_ELEM = registerItem("o_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item HYDREGON_ITEM = registerItem("hydrogen_item", new Item(new FabricItemSettings().fireproof()));
     public static final Item IRON_ITEM = registerItem("iron_item", new Item(new FabricItemSettings().fireproof()));
@@ -33,11 +42,13 @@ public class ModItems {
     //public static final Item NA2_ITEM = registerItem("na2_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item CH4_ITEM = registerItem("ch4_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item CO_ITEM = registerItem("co_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item CO2_ITEM = registerItem("co2_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item H2O_ITEM = registerItem("h2o_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item SO2_ITEM = registerItem("so2_elem", new Item(new FabricItemSettings().fireproof()));
 
 
     public static final Item TITANIUM_INGOT = registerItem("titanium_ingot", new Item(new FabricItemSettings()));
+    public static final Item TOXIC_BUCKET = registerItem("toxic_fluid_bucket", new BucketItem(ModFluids.TOXIC_STILL, new FabricItemSettings().maxCount(1)));
 
 
     //Titanium tools
@@ -51,12 +62,12 @@ public class ModItems {
     public static final Item DIAMOND_BOOTS = registerItem("titanium_boots", (Item)new ArmorItem(TitaniumArmor.INSTANCE, EquipmentSlot.FEET, new Item.Settings()));
 
     private static Item registerItem(String name, Item item){
-        ExampleMod.LOGGER.info("Registered Item: " + name);
+        EduChemMod.LOGGER.info("Registered Item: " + name);
         ItemGroupEvents.modifyEntriesEvent(ModItemGroup.ELEMENTS).register(entries -> entries.add((item)));
-        return Registry.register (Registries.ITEM,new Identifier(ExampleMod.MOD_ID, name), item);
+        return Registry.register (Registries.ITEM,new Identifier(EduChemMod.MOD_ID, name), item);
     }
 
     public static void registerModItems() {
-        ExampleMod.LOGGER.info("Registering mod items for " + ExampleMod.MOD_ID);
+        EduChemMod.LOGGER.info("Registering mod items for " + EduChemMod.MOD_ID);
     }
 }

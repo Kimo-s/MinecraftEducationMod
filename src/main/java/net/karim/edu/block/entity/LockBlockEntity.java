@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class LockBlockEntity extends BlockEntity {
 
-    public String keyItem;
+    public String keyItem = "nothing";
     public boolean lockDecided = false;
     public LockBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.LOCK_BLOCK_ENTITY, pos, state);

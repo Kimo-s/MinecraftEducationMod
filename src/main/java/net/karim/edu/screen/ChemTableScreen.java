@@ -1,7 +1,7 @@
 package net.karim.edu.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class ChemTableScreen extends HandledScreen<ChemTableScreenHandler> {
 
-    private static final Identifier TEXTURE = new Identifier(ExampleMod.MOD_ID, "textures/gui/chem_table_gui.png");
+    private static final Identifier TEXTURE = new Identifier(EduChemMod.MOD_ID, "textures/gui/chem_table_gui.png");
 
     public ChemTableScreen(ChemTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

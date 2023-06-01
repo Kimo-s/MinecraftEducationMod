@@ -1,20 +1,18 @@
 package net.karim.edu.block.entity;
 
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.karim.edu.ExampleMod;
 import net.karim.edu.block.ImplementedInventory;
 import net.karim.edu.recipe.ChemTableRecipe;
-import net.karim.edu.screen.ChemTableScreen;
 import net.karim.edu.screen.ChemTableScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.particle.Particle;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -81,8 +79,6 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
             craftItem(entity);
 
         }
-
-
     }
 
     private static void craftItem(ChemTableBlockEntity entity) {
@@ -107,8 +103,16 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
                 stacksToRemove = Math.min(stackOneCount, stackTwoCount);
             }
 
-            entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove));
-            entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(), stacksToRemove));
+            if(recipe.get().getOutputArr().get(0).getItem() == Items.DIAMOND_SWORD) {
+                ItemStack stack = new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove);
+                stack.addEnchantment(Enchantments.LOOTING, 3);
+                stack.addEnchantment(Enchantments.UNBREAKING, 4);
+                entity.setStack(2, stack);
+            } else {
+                entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove));
+                entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(), stacksToRemove));
+            }
+
 
            // ExampleMod.LOGGER.info("Crafting chem table recipe with this many stacks: " + stacksToRemove);
 

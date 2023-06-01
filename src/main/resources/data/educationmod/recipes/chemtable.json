@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "wooden_fence",
   "key": {
-    "#": {
+    "W": {
       "item": "minecraft:stick"
     },
     "X": {

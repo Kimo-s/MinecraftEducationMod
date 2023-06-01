@@ -4,13 +4,11 @@ import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
 import net.karim.edu.block.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -114,7 +112,7 @@ public class GenericFireBlock extends FireBlock {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         boolean bl2;
-        ExampleMod.LOGGER.info("Ticked inside the generic flame block " + burnChances.size());
+        EduChemMod.LOGGER.info("Ticked inside the generic flame block " + burnChances.size());
         world.scheduleBlockTick(pos, this, GenericFireBlock.getFireTickDelay(world.random));
         if (!world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             return;
@@ -127,7 +125,7 @@ public class GenericFireBlock extends FireBlock {
         int i = state.get(AGE);
         if (!bl && world.isRaining() && this.isRainingAround(world, pos) && random.nextFloat() < 0.2f + (float)i * 0.03f) {
             world.removeBlock(pos, false);
-            ExampleMod.LOGGER.info("1");
+            EduChemMod.LOGGER.info("1");
             return;
         }
         int j = Math.min(15, i + random.nextInt(3) / 2);
@@ -141,16 +139,16 @@ public class GenericFireBlock extends FireBlock {
                 if (!world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, Direction.UP) || i > 3) {
                     world.removeBlock(pos, false);
                 }
-                ExampleMod.LOGGER.info("2");
+                EduChemMod.LOGGER.info("2");
                 return;
             }
             if (i == 15 && random.nextInt(4) == 0 && !this.isFlammable(world.getBlockState(pos.down()))) {
                 world.removeBlock(pos, false);
-                ExampleMod.LOGGER.info("3");
+                EduChemMod.LOGGER.info("3");
                 return;
             }
         }
-        ExampleMod.LOGGER.info("Tried to spread");
+        EduChemMod.LOGGER.info("Tried to spread");
         int k = (bl2 = world.hasHighHumidity(pos)) ? -50 : 0;
         this.trySpreadingFire(world, pos.east(), 300 + k, random, i);
         this.trySpreadingFire(world, pos.west(), 300 + k, random, i);
@@ -197,7 +195,7 @@ public class GenericFireBlock extends FireBlock {
             if (rand.nextInt(currentAge + 10) < 5 && !world.hasRain(pos)) {
                 int j = Math.min(currentAge + rand.nextInt(5) / 4, 15);
                 world.setBlockState(pos, (BlockState)this.getStateForPosition(world, pos).with(AGE, j), 3);
-                ExampleMod.LOGGER.info("Tried to spread to " + pos);
+                EduChemMod.LOGGER.info("Tried to spread to " + pos);
             } else {
                 world.removeBlock(pos, false);
             }

@@ -1,0 +1,19 @@
+{
+  "type": "educationmod:decomposer_table",
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:iron_item"
+    },
+    {
+      "item": "educationmod:p_elem"
+    },
+    {
+      "item": "educationmod:o_elem"
+    }
+  ]
+}

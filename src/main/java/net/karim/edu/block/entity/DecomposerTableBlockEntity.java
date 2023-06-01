@@ -1,10 +1,8 @@
 package net.karim.edu.block.entity;
 
-import net.karim.edu.ExampleMod;
+import net.karim.edu.EduChemMod;
 import net.karim.edu.block.ImplementedInventory;
-import net.karim.edu.recipe.ChemTableRecipe;
 import net.karim.edu.recipe.DecomposerTableRecipe;
-import net.karim.edu.screen.ChemTableScreenHandler;
 import net.karim.edu.screen.DecomposerTableScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -100,7 +98,7 @@ public class DecomposerTableBlockEntity extends BlockEntity implements NamedScre
                 for(int i = 1; i < 10; i++){
                     entity.setStack(i, new ItemStack(recipe.get().getOutputArr().get(i-1).getItem(),
                             (entity.getStack(i-1).getCount() + intputStack)));
-                    ExampleMod.LOGGER.info("Crafting item " + recipe.get().getOutputArr().get(i-1).getItem() + " Count: " + (entity.getStack(i-1).getCount() + intputStack));
+                    EduChemMod.LOGGER.info("Crafting item " + recipe.get().getOutputArr().get(i-1).getItem() + " Count: " + (entity.getStack(i-1).getCount() + intputStack));
                 }
 
 

@@ -1,9 +1,7 @@
 package net.karim.edu.Item;
 
-import net.karim.edu.ExampleMod;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.BlueFireBlock;
-import net.karim.edu.block.blocks.GenericFireBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
