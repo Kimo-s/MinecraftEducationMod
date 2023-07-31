@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:k2o_elem"
+    },
+    {
+      "item": "educationmod:o2_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:fire_bomb_purple"
+    }
+  ]
+}

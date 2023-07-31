@@ -15,6 +15,7 @@ public class ModBlockEntities {
     public static BlockEntityType<LockBlockEntity> LOCK_BLOCK_ENTITY;
     public static BlockEntityType<ToxicAirBlockEntity> TOXIC_AIR_BLOCK_ENTITY;
     public static BlockEntityType<ToxicBlockEntity> TOXIC_BLOCK_ENTITY;
+    public static BlockEntityType<ToxicSpreaderBlockEntity> TOXIC_SPREADER_ENTITY;
 
     public static void registerBlockEntities(){
         CHEM_TABLE_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
@@ -24,6 +25,7 @@ public class ModBlockEntities {
         DECOMPOSER_TABLE_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
                 new Identifier(EduChemMod.MOD_ID, "decomposer_table"),
                 FabricBlockEntityTypeBuilder.create(DecomposerTableBlockEntity::new, ModBlocks.DECOMPOSER_TABLE).build(null));
+
         LOCK_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
                 new Identifier(EduChemMod.MOD_ID, "lock_table"),
                 FabricBlockEntityTypeBuilder.create(LockBlockEntity::new, ModBlocks.LOCK_BLOCK).build(null));
@@ -35,5 +37,9 @@ public class ModBlockEntities {
         TOXIC_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
                 new Identifier(EduChemMod.MOD_ID, "toxic_block"),
                 FabricBlockEntityTypeBuilder.create(ToxicBlockEntity::new, ModBlocks.TOXIC_BLOCK).build(null));
+
+        TOXIC_SPREADER_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+                new Identifier(EduChemMod.MOD_ID, "toxic_spreader"),
+                FabricBlockEntityTypeBuilder.create(ToxicSpreaderBlockEntity::new, ModBlocks.TOXIC_SPREADER_BLOCK).build(null));
     }
 }

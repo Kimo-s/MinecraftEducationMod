@@ -22,9 +22,9 @@ public class WorldTimeTickHandler implements ServerTickEvents.StartTick {
 
    public  WorldTimeTickHandler(){
        messages = new ArrayList<String>();
-       messages.add("This is a help message!! Use the decomposer from the world to get many elements.");
-       messages.add("Another help message!");
-       messages.add("Even more messages!!");
+       messages.add("You can trade with chemist villagers to get elements and chemical compounds.");
+       messages.add("Use the decomposer to break blocks and items into their elements. Try dirt!");
+       messages.add("Talk to the groundhog in the house if you want help with your quests!");
 
     }
 

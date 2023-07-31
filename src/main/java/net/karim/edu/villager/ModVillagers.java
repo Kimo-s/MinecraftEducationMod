@@ -40,27 +40,26 @@ public class ModVillagers {
     }
 
     public static void registerTrades(){
-        Item elements[] = new Item[]{ModItems.C_ITEM, ModItems.O_ELEM, ModItems.H2_ITEM, ModItems.N_ITEM, ModItems.P_ITEM};
 
         TradeOfferHelper.registerVillagerOffers(CHEM_VILLAGER, 1,
                 factories -> {
-                for(int i = 0; i < elements.length; i++) {
+                for(int i = 0; i < ModItems.elements.length; i++) {
                     int finalI = i;
                     factories.add((entity, random) -> new TradeOffer(
                         new ItemStack(Items.EMERALD, 2),
-                        new ItemStack(elements[finalI], 2),
-                        3, 2, 0.02f));
+                        new ItemStack(ModItems.elements[finalI], 2),
+                        8, 15, 0.02f));
                 }
         });
 
         TradeOfferHelper.registerVillagerOffers(CHEM_VILLAGER, 1,
                 factories -> {
-                    for(int i = 0; i < elements.length; i++) {
+                    for(int i = 0; i < ModItems.elements.length; i++) {
                         int finalI = i;
                         factories.add((entity, random) -> new TradeOffer(
-                                new ItemStack(elements[finalI], 1),
+                                new ItemStack(ModItems.elements[finalI], 1),
                                 new ItemStack(Items.EMERALD, 3),
-                                3, 2, 0.02f));
+                                3, 10, 0.02f));
                     }
                 });
 

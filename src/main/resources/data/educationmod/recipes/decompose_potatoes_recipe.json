@@ -1,0 +1,22 @@
+{
+  "type": "educationmod:decomposer_table",
+  "ingredients": [
+    {
+      "tag": "minecraft:potato"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:p_elem"
+    },
+    {
+      "item": "educationmod:n_elem"
+    },
+    {
+      "item": "educationmod:na_elem"
+    },
+    {
+      "item": "educationmod:k_elem"
+    }
+  ]
+}

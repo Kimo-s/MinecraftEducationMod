@@ -5,6 +5,7 @@ import net.karim.edu.recipe.ChemTableRecipe;
 import net.karim.edu.screen.ChemTableScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,9 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -103,11 +106,15 @@ public class ChemTableBlockEntity extends BlockEntity implements NamedScreenHand
                 stacksToRemove = Math.min(stackOneCount, stackTwoCount);
             }
 
-            if(recipe.get().getOutputArr().get(0).getItem() == Items.DIAMOND_SWORD) {
-                ItemStack stack = new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove);
-                stack.addEnchantment(Enchantments.LOOTING, 3);
-                stack.addEnchantment(Enchantments.UNBREAKING, 4);
+            ItemStack stack = new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove);
+
+            if(stack.isEnchantable() && recipe.get().getEnchantmentList().size() != 0) {
+                DefaultedList<Enchantment> enchantmentList = recipe.get().getEnchantmentList();
+                for(int i = 0; i < enchantmentList.size(); i ++) {
+                    stack.addEnchantment(enchantmentList.get(i), 3);
+                }
                 entity.setStack(2, stack);
+                entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(), stacksToRemove));
             } else {
                 entity.setStack(2, new ItemStack(recipe.get().getOutputArr().get(0).getItem(), stacksToRemove));
                 entity.setStack(3, new ItemStack(recipe.get().getOutputArr().get(1).getItem(), stacksToRemove));

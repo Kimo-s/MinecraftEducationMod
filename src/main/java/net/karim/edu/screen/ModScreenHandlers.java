@@ -1,6 +1,7 @@
 package net.karim.edu.screen;
 
 import net.karim.edu.EduChemMod;
+import net.karim.edu.Item.BlockAnalyzer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
@@ -17,5 +18,10 @@ public class ModScreenHandlers {
             Registry.register(Registries.SCREEN_HANDLER,
                     new Identifier(EduChemMod.MOD_ID, "decomposer_table"),
                     new ScreenHandlerType<>(DecomposerTableScreenHandler::new));
+
+    public static ScreenHandlerType<BlockAnalyzerScreenHandler> BLOCK_ANALYZER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER,
+                    new Identifier(EduChemMod.MOD_ID, "block_analyzer"),
+                    new ScreenHandlerType<>(BlockAnalyzerScreenHandler::new));
 
 }

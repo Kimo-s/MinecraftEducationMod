@@ -13,6 +13,8 @@ import net.karim.edu.block.blocks.BlueFireBlock;
 import net.karim.edu.block.blocks.GenericFireBlock;
 import net.karim.edu.block.blocks.GreenFireBlock;
 import net.karim.edu.block.blocks.PurpleFireBlock;
+import net.karim.edu.entities.FertilizerRobot.FertilizerRobotRenderer;
+import net.karim.edu.entities.ModEntities;
 import net.karim.edu.fluid.ModFluids;
 import net.karim.edu.screen.ChemTableScreen;
 import net.karim.edu.screen.DecomposerTableScreen;
@@ -32,6 +34,7 @@ public class EduChemModClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(EduChemMod.GREEN_FLAME, FlameParticle.Factory::new);
 
         EntityRendererRegistry.register(EduChemMod.rocketEntity, (context) -> new FlyingItemEntityRenderer(context));
+        ModEntities.registerClientRenderers();
 
         ScreenRegistry.register(ModScreenHandlers.CHEM_TABLE_SCREEN_HANDLER, ChemTableScreen::new);
         ScreenRegistry.register(ModScreenHandlers.DECOMPOSER_SCREEN_HANDLER, DecomposerTableScreen::new);
@@ -43,6 +46,8 @@ public class EduChemModClient implements ClientModInitializer {
         ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> (tintIndex == 0) ? GreenFireBlock.COLOR : GreenFireBlock.COLOR_BRIGHT, GREEN_FIRE);
         ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> (tintIndex == 0) ? PurpleFireBlock.COLOR : PurpleFireBlock.COLOR_BRIGHT, PURPLE_FIRE);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BLUE_FIRE, GREEN_FIRE, PURPLE_FIRE);
+
+
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TOXIC_GAS, RenderLayer.getTranslucent());

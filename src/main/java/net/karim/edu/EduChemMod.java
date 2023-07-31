@@ -4,12 +4,16 @@ package net.karim.edu;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.entity.ModBlockEntities;
+import net.karim.edu.entities.ModEntities;
+import net.karim.edu.event.ModEvents;
+import net.karim.edu.event.PlayerKillEventHandler;
 import net.karim.edu.event.WorldTimeTickHandler;
 import net.karim.edu.potion.ModPotions;
 import net.karim.edu.projectile.RocketEntity;
@@ -59,10 +63,12 @@ public class EduChemMod implements ModInitializer {
 
 		ModBlockEntities.registerBlockEntities();
 		ModRecipes.registerRecipes();
-		ServerTickEvents.START_SERVER_TICK.register(new WorldTimeTickHandler());
+		ModEvents.registerModEvents();
 		ModLootModifiers.modifyLootTables();
 
 		ModVillagers.registerCustomTrades();
 		ModVillagers.registerTrades();
+
+		ModEntities.registerEntities();
 	}
 }

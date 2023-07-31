@@ -1,0 +1,19 @@
+{
+  "type": "educationmod:decomposer_table",
+  "ingredients": [
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:cu_elem"
+    },
+    {
+      "item": "educationmod:n_elem"
+    },
+    {
+      "item": "educationmod:o_elem"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "type": "educationmod:decomposer_table",
   "ingredients": [
     {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:logs"
     }
   ],
   "output": [

@@ -1,0 +1,20 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:k_elem"
+    },
+    {
+      "item": "educationmod:p_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:diamond_hoe"
+    }
+  ],
+  "enchantments" : [
+    "minecraft:unbreaking",
+    "minecraft:looting"
+  ]
+}

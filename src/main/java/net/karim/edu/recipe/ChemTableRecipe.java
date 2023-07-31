@@ -3,11 +3,18 @@ package net.karim.edu.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.fabricmc.fabric.mixin.registry.sync.RegistriesAccessor;
+import net.karim.edu.EduChemMod;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.s2c.play.TeamS2CPacket;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -20,21 +27,26 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
     private final DefaultedList<Ingredient> recipeItems;
     private final DefaultedList<ItemStack> outputs;
     private final int exp;
+    private final DefaultedList<Enchantment> enchantments;
 
 
     public ChemTableRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, DefaultedList<ItemStack> outputs,
-                           int exp) {
+                           int exp, DefaultedList<Enchantment> enchantments) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
         this.outputs = outputs;
         this.exp = exp;
+        this.enchantments = enchantments;
     }
-
 
 
     public DefaultedList<ItemStack> getOutputArr() {
         return outputs;
+    }
+
+    public DefaultedList<Enchantment> getEnchantmentList() {
+        return enchantments;
     }
 
     public int getExp() {
@@ -120,23 +132,24 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
                 exp = xpJson.getAsInt();
             }
 
-//            JsonArray countArr = JsonHelper.getArray(json, "inputCount");
-//            DefaultedList<Integer> counts = DefaultedList.ofSize(2, 0);
-//            for(int i = 0; i < ingredients.size(); i++){
-//                counts.set(i, countArr.getAsInt());
-//            }
+            JsonElement enchantmentElem = json.get("enchantments");
+            DefaultedList<Enchantment> enchantments = DefaultedList.ofSize(0);
+            if(enchantmentElem != null && !enchantmentElem.isJsonNull()){
+//                JsonArray jsonEnchantmentArr = JsonHelper.getArray(json, "enchantments");
+                JsonArray jsonEnchantmentArr = enchantmentElem.getAsJsonArray();
+                for(int i = 0; i < jsonEnchantmentArr.size(); i++){
+                    Enchantment toAdd = Registries.ENCHANTMENT.get(new Identifier(jsonEnchantmentArr.get(i).getAsString()));
+                    enchantments.add(toAdd);
+                }
+            }
 
-            return new ChemTableRecipe(id, output, inputs, outputs, exp);
+
+
+            return new ChemTableRecipe(id, output, inputs, outputs, exp, enchantments);
         }
 
         @Override
         public ChemTableRecipe read(Identifier id, PacketByteBuf buf) {
-            DefaultedList<ItemStack> outputs = DefaultedList.ofSize(buf.readInt(), ItemStack.EMPTY);
-
-            for (int i = 0; i < outputs.size(); i++) {
-                outputs.set(i, Ingredient.fromPacket(buf).getMatchingStacks()[0]);
-            }
-
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -149,7 +162,19 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
                 exp = buf.readInt();
             }
 
-            return new ChemTableRecipe(id, output, inputs, outputs, exp);
+            DefaultedList<ItemStack> outputs = DefaultedList.ofSize(buf.readInt(), ItemStack.EMPTY);
+
+            for (int i = 0; i < outputs.size(); i++) {
+                outputs.set(i, Ingredient.fromPacket(buf).getMatchingStacks()[0]);
+            }
+
+            DefaultedList<Enchantment> enchantments = DefaultedList.ofSize(buf.readInt());
+
+            for (int i = 0; i < enchantments.size(); i++) {
+                enchantments.set(i, Registries.ENCHANTMENT.get(new Identifier(buf.readString())));
+            }
+
+            return new ChemTableRecipe(id, output, inputs, outputs, exp, enchantments);
         }
 
         @Override

@@ -2,15 +2,15 @@
   "type": "educationmod:chem_table",
   "ingredients": [
     {
-      "item": "educationmod:k_elem"
+      "item": "educationmod:o_elem"
     },
     {
-      "item": "educationmod:o2_elem"
+      "item": "educationmod:o_elem"
     }
   ],
   "output": [
     {
-      "item": "educationmod:k2o_elem"
+      "item": "educationmod:o2_elem"
     }
   ]
 }

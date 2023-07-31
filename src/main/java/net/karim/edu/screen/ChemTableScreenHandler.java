@@ -1,5 +1,6 @@
 package net.karim.edu.screen;
 
+import net.karim.edu.EduChemMod;
 import net.karim.edu.recipe.ChemTableRecipe;
 import net.karim.edu.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,9 +35,14 @@ public class ChemTableScreenHandler extends ScreenHandler {
             // Remove the input items if the output items were removed by the player
             for(int i = 2; i < 4; i++){
                 if(slotIndex == i){
+                    EduChemMod.LOGGER.info("(Chemistry table) Crafted "
+                            + this.getSlot(0).getStack().getItem().getName().getString() + " + " + this.getSlot(1).getStack().getItem().getName().getString()
+                    + " = " + this.getSlot(2).getStack().getItem().getName().getString() + " and " + this.getSlot(3).getStack().getItem().getName().getString() );
+
                     this.getSlot(0).setStack(ItemStack.EMPTY);
                     this.getSlot(1).setStack(ItemStack.EMPTY);
                     player.addExperience(recipe.get().getExp());
+
                 }
             }
 

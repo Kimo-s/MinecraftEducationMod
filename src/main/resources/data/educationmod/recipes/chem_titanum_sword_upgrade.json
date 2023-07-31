@@ -1,0 +1,22 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:titanium_sword"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:titanium_sword"
+    }
+  ],
+  "enchantments" : [
+    "minecraft:unbreaking",
+    "minecraft:looting",
+    "minecraft:sweeping",
+    "minecraft:sharpness"
+  ]
+}

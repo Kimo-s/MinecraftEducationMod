@@ -1,0 +1,5 @@
+{
+  "variants" : {
+    "" : {"model" :  "educationmod:block/cleaner_block"}
+  }
+}

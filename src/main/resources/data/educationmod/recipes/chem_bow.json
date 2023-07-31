@@ -1,0 +1,21 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:so2_elem"
+    },
+    {
+      "item": "educationmod:k2o_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "minecraft:bow"
+    }
+  ],
+  "enchantments" : [
+    "minecraft:unbreaking",
+    "minecraft:mending",
+    "minecraft:infinity"
+  ]
+}

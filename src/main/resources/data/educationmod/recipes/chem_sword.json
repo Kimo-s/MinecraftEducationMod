@@ -2,15 +2,19 @@
   "type": "educationmod:chem_table",
   "ingredients": [
     {
-      "item": "educationmod:c_elem"
+      "item": "educationmod:titanium_ingot"
     },
     {
-      "item": "minecraft:diamond"
+      "item": "educationmod:k2o_elem"
     }
   ],
   "output": [
     {
       "item": "educationmod:titanium_sword"
     }
+  ],
+  "enchantments" : [
+    "minecraft:unbreaking",
+    "minecraft:looting"
   ]
 }
