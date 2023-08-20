@@ -6,6 +6,7 @@ import net.karim.edu.EduChemMod;
 import net.karim.edu.Item.ModItems;
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.GenericFireBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -58,7 +59,10 @@ public class RocketEntity extends ThrownItemEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 100);
+        Entity entity = entityHitResult.getEntity();
+        if (entity instanceof LivingEntity && entity.isAlive()) {
+            entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 20);
+        }
     }
 
     @Override

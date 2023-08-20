@@ -80,7 +80,9 @@ public class FertilizeDirtGoal extends Goal {
             }
         } else {
             this.reached = true;
-            useOnFertilizable(this.mob.world, getTargetPos());
+            for(int i = 0; i < 4; i++){
+                useOnFertilizable(this.mob.world, getTargetPos());
+            }
             --this.tryingTime;
         }
     }

@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.karim.edu.Item.ModItems;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -26,10 +27,21 @@ public class ModLootModifiers {
                 LootPool.Builder pool = LootPool.builder()
                         .with(ItemEntry.builder(ModItems.elements[i]))
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .apply(SetCountLootFunction.builder(BinomialLootNumberProvider.create(1, 0.1f)));
+                        .apply(SetCountLootFunction.builder(BinomialLootNumberProvider.create(1, 0.04f)));
 
                 supplier.pool(pool);
             }
+        }
+    }
+
+    public static void addItemDrop(Item itemToAdd, Identifier mobID, Identifier id, LootTable.Builder supplier, LootTableSource setter){
+        if(mobID.equals(id) && setter.isBuiltin()) {
+                LootPool.Builder pool = LootPool.builder()
+                        .with(ItemEntry.builder(itemToAdd))
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .apply(SetCountLootFunction.builder(BinomialLootNumberProvider.create(1, 1.0f)));
+
+                supplier.pool(pool);
         }
     }
 
@@ -43,6 +55,9 @@ public class ModLootModifiers {
             addElementsDrop(new Identifier("minecraft", "entities/pillager"), id, supplier, setter);
             addElementsDrop(new Identifier("minecraft", "entities/enderman"), id, supplier, setter);
             addElementsDrop(new Identifier("minecraft", "entities/witcher"), id, supplier, setter);
+
+            addItemDrop(ModItems.PURPLE_KEY, new Identifier(EduChemMod.MOD_ID, "entities/chemist_zombie"), id, supplier, setter);
+
         }));
     }
 

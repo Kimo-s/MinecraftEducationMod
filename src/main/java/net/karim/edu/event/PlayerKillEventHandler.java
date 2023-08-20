@@ -10,7 +10,11 @@ public class PlayerKillEventHandler implements ServerEntityCombatEvents.AfterKil
     @Override
     public void afterKilledOtherEntity(ServerWorld world, Entity entity, LivingEntity killedEntity) {
         if(entity.isPlayer()){
-            EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed " + killedEntity.getDisplayName().getString());
+            if(killedEntity.getRecentDamageSource() != null){
+                EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed " + killedEntity.getDisplayName().getString() + ". (source: " + killedEntity.getRecentDamageSource().getName() + ")");
+            } else {
+                EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed " + killedEntity.getDisplayName().getString());
+            }
         }
     }
 }

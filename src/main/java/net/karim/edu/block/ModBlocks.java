@@ -25,7 +25,7 @@ public class ModBlocks {
 
     public static final Block CHEM_TABLE = registerBlock("chem_table", ModItemGroup.ELEMENTS, new ChemTableBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(6f)));
     public static final Block DECOMPOSER_TABLE = registerBlock("decomposer_table", ModItemGroup.ELEMENTS, new DecomposerTableBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
-    public static final Block LOCK_BLOCK = registerBlock("lock_block", ModItemGroup.ELEMENTS, new LockBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(100000f).resistance(1000000)));
+    public static final Block LOCK_BLOCK = registerBlock("lock_block", ModItemGroup.ELEMENTS, new LockBlock(FabricBlockSettings.of(Material.METAL).sounds(BlockSoundGroup.ANVIL).strength(100000f).resistance(1000000).hardness(1000000)));
     public static final Block HARDENED_BRICKS = registerBlock("hardened_bricks",  ModItemGroup.ELEMENTS, new Block(FabricBlockSettings.copy(COBBLED_DEEPSLATE).sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(100000f).resistance(1000000)));
     public static final Block TITANIUM_ORE = registerBlock("titanium_ore", ModItemGroup.ELEMENTS, new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 3.0f)));
     public static final Block TOXIC_BLOCK = registerBlock("toxic_block", ModItemGroup.ELEMENTS, new ToxicBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));

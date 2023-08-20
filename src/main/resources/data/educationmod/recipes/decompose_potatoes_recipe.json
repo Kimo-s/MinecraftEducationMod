@@ -2,7 +2,7 @@
   "type": "educationmod:decomposer_table",
   "ingredients": [
     {
-      "tag": "minecraft:potato"
+      "item": "minecraft:potato"
     }
   ],
   "output": [
