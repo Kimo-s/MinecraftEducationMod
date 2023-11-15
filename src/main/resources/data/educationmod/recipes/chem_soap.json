@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:naoh_elem"
+    },
+    {
+      "item": "minecraft:leather"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:toxic_water_cleaner_potion"
+    }
+  ]
+}

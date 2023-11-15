@@ -1,0 +1,81 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "hogNPC",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "body",
+					"parent": "hogNPC",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 12, -3], "size": [8, 12, 6], "uv": [34, 36]}
+					]
+				},
+				{
+					"name": "bodywear",
+					"parent": "hogNPC",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 4, -3], "size": [8, 20, 6], "inflate": 0.5, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "arms",
+					"parent": "hogNPC",
+					"pivot": [0, 21.05, -1.05],
+					"rotation": [-43, 0, 0],
+					"cubes": [
+						{"origin": [-4, 15.05, -3.05], "size": [8, 4, 4], "uv": [52, 0]},
+						{"origin": [-8, 15.05, -3.05], "size": [4, 8, 4], "uv": [48, 54]}
+					]
+				},
+				{
+					"name": "mirrored",
+					"parent": "arms",
+					"pivot": [0, 0, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [4, 15.05, -3.05], "size": [4, 8, 4], "uv": [32, 54], "mirror": false}
+					]
+				},
+				{
+					"name": "leg",
+					"pivot": [-2, 12, 0],
+					"cubes": [
+						{"origin": [-4, 0, -2], "size": [4, 12, 4], "uv": [16, 43]}
+					]
+				},
+				{
+					"name": "left_leg",
+					"parent": "leg",
+					"pivot": [2, 12, 0],
+					"cubes": [
+						{"origin": [0, 0, -2], "size": [4, 12, 4], "uv": [0, 43]}
+					]
+				},
+				{
+					"name": "Head",
+					"pivot": [0, 29.25, -1.25],
+					"cubes": [
+						{"origin": [-4, 25, -4], "size": [8, 10, 8], "uv": [34, 18]},
+						{"origin": [-4, 25, -4], "size": [8, 10, 8], "inflate": 0.51, "uv": [28, 0]},
+						{"origin": [-1, 25, -6], "size": [2, 3, 2], "uv": [22, 0]},
+						{"origin": [-8, -7, 29], "size": [16, 16, 1], "pivot": [0, 1, 0], "rotation": [90, 0, 0], "uv": [0, 26]}
+					]
+				}
+			]
+		}
+	]
+}

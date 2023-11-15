@@ -1,6 +1,7 @@
 package net.karim.edu.Item;
 
 import net.karim.edu.EduChemMod;
+import net.karim.edu.screen.BlockAnalyzerScreen;
 import net.karim.edu.screen.BlockAnalyzerScreenHandler;
 import net.karim.edu.screen.Cotton.BlockAnalyzerCotton;
 import net.karim.edu.screen.Cotton.BlockAnalyzerCottonScreen;
@@ -46,9 +47,9 @@ public class BlockAnalyzer extends Item {
         for(int i = 0; i < blocks.length; i++) {
             Block hitBlock = context.getWorld().getBlockState(context.getBlockPos()).getBlock();
             if(hitBlock == blocks[i]){
-                context.getPlayer().sendMessage(Text.of("Elements in " + hitBlock.getName() + ": "  + blockElements[i]));
+//                context.getPlayer().sendMessage(Text.of("Elements in " + hitBlock.getName() + ": "  + blockElements[i]));
                 if(context.getWorld().isClient){
-                    MinecraftClient.getInstance().setScreen(new BlockAnalyzerCotton(new BlockAnalyzerCottonScreen("Elements in " + hitBlock.getName() + ": "  + blockElements[i])));
+                    MinecraftClient.getInstance().setScreen(new BlockAnalyzerCotton(new BlockAnalyzerCottonScreen("Elements in " + hitBlock.getName().getString() + ": \n\n"  + blockElements[i])));
                 }
                 break;
             }
@@ -56,9 +57,8 @@ public class BlockAnalyzer extends Item {
         TagKey<Block> key = TagKey.of(RegistryKeys.BLOCK, new Identifier("minecraft", "logs"));
 
 
-
 //        if (!context.getWorld().isClient) {
-//            NamedScreenHandlerFactory screenHandlerFactory = new BlockAnalyzerScreenHandler(0, context.getPlayer().getInventory());
+//            NamedScreenHandlerFactory screenHandlerFactory = new BlockAnalyzerCottonScreen(context.getPlayer().getInventory());
 //
 //            if (screenHandlerFactory != null) {
 //                context.getPlayer().openHandledScreen(screenHandlerFactory);
@@ -66,6 +66,6 @@ public class BlockAnalyzer extends Item {
 //        }
 
 
-        return super.useOnBlock(context);
+            return super.useOnBlock(context);
     }
 }

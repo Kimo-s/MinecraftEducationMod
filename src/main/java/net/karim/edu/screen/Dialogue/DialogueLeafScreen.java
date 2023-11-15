@@ -4,7 +4,6 @@ import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
-import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WText;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.karim.edu.EduChemMod;
@@ -36,6 +35,6 @@ public class DialogueLeafScreen extends LightweightGuiDescription implements Run
     @Override
     public void run() {
         EduChemMod.LOGGER.info("Player talked with groundhog and presented with this dialogue: " + textString);
-        MinecraftClient.getInstance().setScreen(new DialogueScreen(this));
+        MinecraftClient.getInstance().setScreen(new GroundHogDialogueScreen(this));
     }
 }

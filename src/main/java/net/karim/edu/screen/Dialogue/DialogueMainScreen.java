@@ -28,6 +28,7 @@ public class DialogueMainScreen extends LightweightGuiDescription {
         leafScreen.put("How can I get elements?", "You can get elements by using the decomposer, killing monsters around you, farming, and trading with villagers. \nDon't forgot there is a village nearby that you can go to.");
         leafScreen.put("Who are you?", "I am a hedgehog! I will help you survive and advance in this game.");
         leafScreen.put("Quests", "There are doors in the basement of this building. Those Doors need keys in order to open. You need to use the Chemistry table to combine the items needed to find make the keys.");
+        leafScreen.put("Village", "Yeah there is a village nearby. The water there is all green and bad maybe you could help by clean it up. There is probably a bad boss nearby.");
 
 
         WGridPanel root = new WGridPanel();
@@ -37,7 +38,7 @@ public class DialogueMainScreen extends LightweightGuiDescription {
         root.setInsets(Insets.ROOT_PANEL);
 
 
-        WLabel label = new WLabel(Text.literal("Hi, welcome to my house. How can I help you?"), 0xFFFFFF);
+        WLabel label = new WLabel(Text.literal("Hi, welcome to my house. How can I help you?"), 0x000000);
         root.add(label, 0, 0, 4, 1);
 
 
@@ -51,9 +52,9 @@ public class DialogueMainScreen extends LightweightGuiDescription {
             WButton button = new WButton(Text.literal(keyArray.get(i)));
             button.setOnClick(new DialogueLeafScreen(this, Text.literal(leafScreen.get(keyArray.get(i)))));
             if(i % 2 == 0) {
-                root.add(button, 1, 6+2*yoffset, 7, 1);
+                root.add(button, 1, 3+2*yoffset, 7, 1);
             } else {
-                root.add(button, 1 + 8, 6+2*yoffset, 7, 1);
+                root.add(button, 1 + 8, 3+2*yoffset, 7, 1);
             }
         }
 

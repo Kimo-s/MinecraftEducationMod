@@ -1,9 +1,12 @@
 package net.karim.edu.entities.FertilizerRobot;
 
 import net.karim.edu.screen.Dialogue.DialogueMainScreen;
-import net.karim.edu.screen.Dialogue.DialogueScreen;
+import net.karim.edu.screen.Dialogue.GroundHogDialogueScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -34,10 +37,15 @@ public class FertilizerRobot extends PathAwareEntity implements GeoEntity {
 
     @Override
     protected void initGoals() {
-
         this.goalSelector.add(1, new FertilizeDirtGoal(this, 30, 0.6f, FARMLAND));
-//        this.goalSelector.add(2, new WanderAroundGoal(this, 0.4f));
+        this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.4f));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(4, new LookAroundGoal(this));
+    }
 
+    @Override
+    public boolean cannotDespawn() {
+        return true;
     }
 
     @Override
@@ -47,14 +55,14 @@ public class FertilizerRobot extends PathAwareEntity implements GeoEntity {
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
 
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.fertilizer_robot.idle", Animation.LoopType.LOOP));
+        tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.model.idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 
     @Override
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         if(player.getWorld().isClient){
-            MinecraftClient.getInstance().setScreen(new DialogueScreen(new DialogueMainScreen()));
+            MinecraftClient.getInstance().setScreen(new GroundHogDialogueScreen(new DialogueMainScreen()));
 //            MinecraftClient.getInstance().setScreen(new BlockAnalyzerCotton(new BlockAnalyzerCottonScreen()));
         }
         return super.interactMob(player, hand);

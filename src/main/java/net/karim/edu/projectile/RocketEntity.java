@@ -27,16 +27,16 @@ public class RocketEntity extends ThrownItemEntity {
     }
 
     public RocketEntity(World world, LivingEntity owner) {
-        super(EduChemMod.rocketEntity, owner, world);
+        super(ModProjectiles.rocketEntity, owner, world);
     }
 
     public RocketEntity(World world, LivingEntity owner, GenericFireBlock fireBlock) {
-        super(EduChemMod.rocketEntity, owner, world);
+        super(ModProjectiles.rocketEntity, owner, world);
         this.fireBlock = fireBlock;
     }
 
     public RocketEntity(World world, double x, double y, double z) {
-        super(EduChemMod.rocketEntity, x, y, z,  world);
+        super(ModProjectiles.rocketEntity, x, y, z,  world);
     }
 
     @Override

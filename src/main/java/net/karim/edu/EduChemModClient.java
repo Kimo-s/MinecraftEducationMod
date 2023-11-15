@@ -16,6 +16,7 @@ import net.karim.edu.block.blocks.PurpleFireBlock;
 import net.karim.edu.entities.FertilizerRobot.FertilizerRobotRenderer;
 import net.karim.edu.entities.ModEntities;
 import net.karim.edu.fluid.ModFluids;
+import net.karim.edu.projectile.ModProjectiles;
 import net.karim.edu.screen.ChemTableScreen;
 import net.karim.edu.screen.DecomposerTableScreen;
 import net.karim.edu.screen.ModScreenHandlers;
@@ -33,7 +34,9 @@ public class EduChemModClient implements ClientModInitializer {
     public void onInitializeClient() {
         ParticleFactoryRegistry.getInstance().register(EduChemMod.GREEN_FLAME, FlameParticle.Factory::new);
 
-        EntityRendererRegistry.register(EduChemMod.rocketEntity, (context) -> new FlyingItemEntityRenderer(context));
+        BlockRenderLayerMap.INSTANCE.putBlock(TOXIC_WASTE, RenderLayer.getTranslucent());
+
+        ModProjectiles.registerProjectileEntities();
         ModEntities.registerClientRenderers();
 
         ScreenRegistry.register(ModScreenHandlers.CHEM_TABLE_SCREEN_HANDLER, ChemTableScreen::new);

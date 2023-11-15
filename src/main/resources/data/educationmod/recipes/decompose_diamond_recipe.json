@@ -1,0 +1,19 @@
+{
+  "type": "educationmod:decomposer_table",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:c_elem"
+    },
+    {
+      "item": "educationmod:c_elem"
+    },
+    {
+      "item": "educationmod:c_elem"
+    }
+  ]
+}

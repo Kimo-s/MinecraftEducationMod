@@ -1,0 +1,19 @@
+{
+  "type": "educationmod:decomposer_table",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:c_elem"
+    },
+    {
+      "item": "educationmod:p_elem"
+    },
+    {
+      "item": "educationmod:n_elem"
+    }
+  ]
+}

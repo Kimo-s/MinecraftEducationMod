@@ -2,6 +2,7 @@ package net.karim.edu.block.entity;
 
 import net.karim.edu.block.ModBlocks;
 import net.karim.edu.block.blocks.CleanerBlock;
+import net.karim.edu.block.blocks.ToxicWaste;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.GrassBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,7 +37,7 @@ public class ToxicSpreaderBlockEntity extends BlockEntity {
         if(!world.isClient()){
 
             float rand = Random.create().nextFloat();
-            if(rand <= 0.25){
+            if(rand <= 0.95){
                 return;
             }
 

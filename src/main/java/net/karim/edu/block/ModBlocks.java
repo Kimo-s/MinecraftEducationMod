@@ -8,6 +8,7 @@ import net.karim.edu.Item.ModItemGroup;
 import net.karim.edu.block.blocks.*;
 import net.karim.edu.fluid.ModFluids;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -31,6 +32,7 @@ public class ModBlocks {
     public static final Block TOXIC_BLOCK = registerBlock("toxic_block", ModItemGroup.ELEMENTS, new ToxicBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
     public static final Block TOXIC_SPREADER_BLOCK = registerBlock("toxic_spreader", ModItemGroup.ELEMENTS, new ToxicSpreaderBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
     public static final Block CLEANER_BLOCK = registerBlock("cleaner_block", ModItemGroup.ELEMENTS, new CleanerBlock(FabricBlockSettings.of(Material.METAL).strength(6f)));
+    public static final Block TOXIC_WASTE = registerBlock("toxic_waste", ModItemGroup.ELEMENTS, new ToxicWaste(AbstractBlock.Settings.of(Material.LEAVES).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::canSpawnOnLeaves).suffocates(ModBlocks::never).blockVision(ModBlocks::never)));
 
 
     public static final Block TOXIC_GAS = registerBlock("toxic_gas",  ModItemGroup.ELEMENTS, new ToxicAirBlock(FabricBlockSettings.of(Material.AIR).nonOpaque().noCollision().suffocates(ModBlocks::always)));
@@ -43,6 +45,14 @@ public class ModBlocks {
 
     private static boolean always(BlockState state, BlockView world, BlockPos pos) {
         return true;
+    }
+
+    private static boolean never(BlockState state, BlockView world, BlockPos pos) {
+        return false;
+    }
+
+    private static Boolean canSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
+        return type == EntityType.OCELOT || type == EntityType.PARROT;
     }
 
     private static Block registerBlock(String name, ItemGroup group, Block block) {

@@ -44,6 +44,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.MobSpawnerEntry;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
@@ -61,28 +62,29 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static net.karim.edu.fluid.ModFluids.TOXIC_STILL;
+import static net.karim.edu.villager.ModVillagers.CHEM_VILLAGER;
 import static net.minecraft.fluid.Fluids.FLOWING_WATER;
 
-public class ChemistZombie extends RaiderEntity implements GeoEntity, RangedAttackMob {
+public class ChemistZombie extends HostileEntity implements GeoEntity, RangedAttackMob {
 
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final TrackedData<Boolean> DRINKING = DataTracker.registerData(ChemistZombie.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final Text EVENT_TEXT = Text.translatable("event.educationmod.chemist_boss");
     private final ServerBossBar bar = new ServerBossBar(EVENT_TEXT, BossBar.Color.RED, BossBar.Style.NOTCHED_10);
 
-    public ChemistZombie(EntityType<? extends RaiderEntity> entityType, World world) {
+    public ChemistZombie(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 
 
     public static DefaultAttributeContainer.Builder setAttributes() {
-        return RaiderEntity.createMobAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 35.0)
+        return HostileEntity.createMobAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 35.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23f)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0)
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
                 .add(EntityAttributes.GENERIC_ARMOR, 2.0)
                 .add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 300.0);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0);
     }
 
 
@@ -102,16 +104,6 @@ public class ChemistZombie extends RaiderEntity implements GeoEntity, RangedAtta
 
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, VillagerEntity.class, true));
-    }
-
-    @Override
-    public void addBonusForWave(int wave, boolean unused) {
-
-    }
-
-    @Override
-    public SoundEvent getCelebratingSound() {
-        return null;
     }
 
 
@@ -192,6 +184,11 @@ public class ChemistZombie extends RaiderEntity implements GeoEntity, RangedAtta
 
     }
 
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
     public boolean isDrinking() {
         return this.getDataTracker().get(DRINKING);
     }
@@ -217,6 +214,10 @@ public class ChemistZombie extends RaiderEntity implements GeoEntity, RangedAtta
         for (ServerPlayerEntity serverPlayerEntity : set) {
             this.bar.removePlayer(serverPlayerEntity);
         }
+        Entity entity = ((EntityType<VillagerEntity>)EntityType.get("minecraft:villager").get()).create(world);
+        assert entity != null;
+        entity.updatePosition(this.getPos().x, this.getPos().y, this.getPos().z);
+        world.spawnEntity(entity);
         super.onDeath(damageSource);
     }
 
@@ -234,7 +235,7 @@ public class ChemistZombie extends RaiderEntity implements GeoEntity, RangedAtta
 
             float hpPercent = (float) (this.getHealth()/this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).getBaseValue());
             this.bar.setPercent(MathHelper.clamp(hpPercent, 0.0f, 1.0f));
-            this.updateBarToPlayers();
+//            this.updateBarToPlayers();
 
             return super.damage(source, amount);
         } else {

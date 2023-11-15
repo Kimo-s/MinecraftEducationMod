@@ -43,10 +43,6 @@ public class EduChemMod implements ModInitializer {
 
 
 	public static final DefaultParticleType GREEN_FLAME = FabricParticleTypes.simple();
-	public static final EntityType<RocketEntity> rocketEntity = Registry.register(Registries.ENTITY_TYPE,
-			new Identifier(EduChemMod.MOD_ID, "rocket_projectile"),
-			FabricEntityTypeBuilder.<RocketEntity>create(SpawnGroup.MISC, RocketEntity::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(7).trackedUpdateRate(10).build()
-	);
 
 	public static final RegistryKey<PlacedFeature> TITANIUM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(EduChemMod.MOD_ID, "titanium_ore"));
 

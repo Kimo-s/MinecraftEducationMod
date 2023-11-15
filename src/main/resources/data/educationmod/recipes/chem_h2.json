@@ -2,10 +2,10 @@
   "type": "educationmod:chem_table",
   "ingredients": [
     {
-      "item": "educationmod:hydrogen_item"
+      "item": "educationmod:h_elem"
     },
     {
-      "item": "educationmod:hydrogen_item"
+      "item": "educationmod:h_elem"
     }
   ],
   "output": [

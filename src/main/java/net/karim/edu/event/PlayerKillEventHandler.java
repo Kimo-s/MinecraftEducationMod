@@ -15,6 +15,13 @@ public class PlayerKillEventHandler implements ServerEntityCombatEvents.AfterKil
             } else {
                 EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed " + killedEntity.getDisplayName().getString());
             }
+        } else if (killedEntity.isPlayer()){
+            if(killedEntity.getRecentDamageSource() != null){
+                EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed player " + killedEntity.getDisplayName().getString() + ". (source: " + killedEntity.getRecentDamageSource().getName() + ")");
+            } else {
+                EduChemMod.LOGGER.info(entity.getDisplayName().getString() + " killed player " + killedEntity.getDisplayName().getString());
+            }
         }
+
     }
 }

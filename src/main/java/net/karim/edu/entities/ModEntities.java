@@ -8,6 +8,8 @@ import net.karim.edu.entities.ChemistZombie.ChemistZombie;
 import net.karim.edu.entities.ChemistZombie.ChemistZombieRenderer;
 import net.karim.edu.entities.FertilizerRobot.FertilizerRobot;
 import net.karim.edu.entities.FertilizerRobot.FertilizerRobotRenderer;
+import net.karim.edu.entities.groundHog.GroundHog;
+import net.karim.edu.entities.groundHog.GroundHogRenderer;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -29,15 +31,23 @@ public class ModEntities {
                     .dimensions(EntityDimensions.fixed(0.6f,1.95f))
                     .build());
 
+    public static final EntityType<GroundHog> GROUND_HOG = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(EduChemMod.MOD_ID, "ground_hog"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, GroundHog::new)
+                    .dimensions(EntityDimensions.fixed(0.6f,1.95f))
+                    .build());
+
     public static void registerEntities(){
         EduChemMod.LOGGER.info("Registering the entities");
         FabricDefaultAttributeRegistry.register(FERTILIZER_ROBOT, FertilizerRobot.createMobAttributes());
         FabricDefaultAttributeRegistry.register(CHEMIST_ZOMBIE, ChemistZombie.setAttributes());
+        FabricDefaultAttributeRegistry.register(GROUND_HOG, GroundHog.setAttributes());
     }
 
     public static void registerClientRenderers(){
         EduChemMod.LOGGER.info("Registering the entities' renderers");
         EntityRendererRegistry.register(ModEntities.FERTILIZER_ROBOT, FertilizerRobotRenderer::new);
         EntityRendererRegistry.register(ModEntities.CHEMIST_ZOMBIE, ChemistZombieRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GROUND_HOG, GroundHogRenderer::new);
     }
 }

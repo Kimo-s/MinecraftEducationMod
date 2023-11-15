@@ -59,12 +59,23 @@ public class ChemTableRecipe implements Recipe<SimpleInventory> {
             return false;
         }
 
+//        if(inventory.getStack(0).isOf(inventory.getStack(1).getItem())){
+//            return recipeItems.get(0).test(inventory.getStack(0)) && recipeItems.get(0).test(inventory.getStack(1)) && !(inventory.getStack(0).isEmpty() || inventory.getStack(1).isEmpty());
+//        }
 
-        return (recipeItems.get(0).test(inventory.getStack(0))
-                || recipeItems.get(0).test(inventory.getStack(1)))
-                && (recipeItems.get(1).test(inventory.getStack(0))
-                || recipeItems.get(1).test(inventory.getStack(1)))
-                && !(inventory.getStack(0).isEmpty() && inventory.getStack(1).isEmpty());
+
+
+        if(!(inventory.getStack(0).isEmpty() && inventory.getStack(1).isEmpty())){
+            if(recipeItems.get(0).test(inventory.getStack(0)) && recipeItems.get(1).test(inventory.getStack(1))){
+                return true;
+            } else if(recipeItems.get(1).test(inventory.getStack(0)) && recipeItems.get(0).test(inventory.getStack(1))){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override

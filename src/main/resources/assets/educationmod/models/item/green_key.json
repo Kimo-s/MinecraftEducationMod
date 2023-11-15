@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "educationmod:item/carbon"
+    "layer0": "educationmod:item/purple_key"
   }
 }
