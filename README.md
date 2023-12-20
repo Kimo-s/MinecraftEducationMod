@@ -1,4 +1,4 @@
-# Fabric Example Mod
+# Chemisty Mod
 
 ## Setup
 
