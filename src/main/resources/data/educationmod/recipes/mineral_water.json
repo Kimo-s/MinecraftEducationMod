@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:mineral_water"
+    }
+  ]
+}

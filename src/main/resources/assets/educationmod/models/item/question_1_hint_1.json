@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "educationmod:item/co2"
+    "layer0": "educationmod:item/paper"
   }
 }

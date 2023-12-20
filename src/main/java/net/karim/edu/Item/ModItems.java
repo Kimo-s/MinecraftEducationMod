@@ -14,9 +14,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ModItems {
 
-    public static final Item test_item = registerItem("test_item", new Item(new FabricItemSettings().fireproof()));
     public static final Item GUIDE = registerItem("chem_book", (Item)new WrittenBookItem(new FabricItemSettings().maxCount(16)));
     public static final Item BLOCK_ANALYZER = registerItem("block_analyzer", new BlockAnalyzer(new FabricItemSettings().maxCount(1)));
     public static final Item FERTILIZER_ROBOT_SPAWN_EGG = registerItem("fertilizer_robot_spawn_egg", (Item)new SpawnEggItem(ModEntities.FERTILIZER_ROBOT, 0x959B9B, 12422002, new FabricItemSettings()));
@@ -54,18 +56,27 @@ public class ModItems {
     public static final Item H2O_ITEM = registerItem("h2o_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item SO2_ITEM = registerItem("so2_elem", new Item(new FabricItemSettings().fireproof()));
     public static final Item CUSO4_ITEM = registerItem("cuso4_elem", new Item(new FabricItemSettings().fireproof()));
+    public static final Item NA2CO3_ITEM = registerItem("na2co3_elem", new MineralWater(new FabricItemSettings()));
+    public static final Item NAHCO3_ITEM = registerItem("nahco3_elem", new MineralWater(new FabricItemSettings()));
     public static final Item PURPLE_KEY = registerItem("purple_key", new Item(new FabricItemSettings().fireproof()));
     public static final Item GREEN_KEY = registerItem("green_key", new Item(new FabricItemSettings().fireproof()));
     public static final Item YELLOW_KEY = registerItem("yellow_key", new Item(new FabricItemSettings().fireproof()));
 
+
     public static final Item TITANIUM_INGOT = registerItem("titanium_ingot", new Item(new FabricItemSettings()));
     public static final Item TOXIC_BUCKET = registerItem("toxic_fluid_bucket", new BucketItem(ModFluids.TOXIC_STILL, new FabricItemSettings().maxCount(1)));
+    public static final Item MINERAL_WATER = registerItem("mineral_water", new MineralWater(new FabricItemSettings().maxCount(1)));
 
     public static final Item TOXIC_CLEANER = registerItem("toxic_cleaner", new ToxicCleaner(new FabricItemSettings().fireproof().maxCount(1)));
+
     public static final Item QUESTION_1 = registerItem("question_1", new ReadableMessage(new FabricItemSettings().fireproof().maxCount(1), "Castile soap is a common kind of soap that can be used to clean all sorts of things, and is very easy to make. The first step is to create Sodium Carbonate, a substance made of sodium, carbon, and oxygen. Sodium is written as “Na”, Carbon is written as “C”, and oxygen is written as “O”. Which of the following compounds do you think is Sodium Carbonate?" +
             "\n A. M2CO3" +
             "\n B. NaCl" +
-            "\n C. Na2CO3"));
+            "\n C. Na2CO3"
+    , new ArrayList<>(Arrays.asList("Some hint", "hint two", "some other list"))));
+    public static final Item QUESTION_1_HINT_1 = registerItem("question_1_hint_1", new ReadableMessage(new FabricItemSettings().fireproof().maxCount(1), "Hint 1 Question 1"));
+    public static final Item QUESTION_1_HINT_2 = registerItem("question_1_hint_2", new ReadableMessage(new FabricItemSettings().fireproof().maxCount(1), "Hint 2 Question 1"));
+    public static final Item QUESTION_1_HINT_3 = registerItem("question_1_hint_3", new ReadableMessage(new FabricItemSettings().fireproof().maxCount(1), "Hint 3 Question 1"));
     public static final Item HYPER_JUMPER = registerItem("hyper_jumper", new JumpBoost(new FabricItemSettings().fireproof().maxCount(1), 2.4));
 
 

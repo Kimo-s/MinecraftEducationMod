@@ -2,15 +2,10 @@ package net.karim.edu.entities.ChemistZombie;
 
 import com.google.common.collect.Sets;
 import net.karim.edu.EduChemMod;
-import net.karim.edu.entities.ModEntities;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
-import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -26,33 +21,22 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Arm;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.MobSpawnerEntry;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.core.jmx.Server;
-import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.GeckoLib;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
@@ -62,7 +46,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static net.karim.edu.fluid.ModFluids.TOXIC_STILL;
-import static net.karim.edu.villager.ModVillagers.CHEM_VILLAGER;
 import static net.minecraft.fluid.Fluids.FLOWING_WATER;
 
 public class ChemistZombie extends HostileEntity implements GeoEntity, RangedAttackMob {
@@ -84,7 +67,7 @@ public class ChemistZombie extends HostileEntity implements GeoEntity, RangedAtt
                 .add(EntityAttributes.GENERIC_ATTACK_SPEED, 2.0f)
                 .add(EntityAttributes.GENERIC_ARMOR, 2.0)
                 .add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 130.0);
     }
 
 
@@ -231,16 +214,12 @@ public class ChemistZombie extends HostileEntity implements GeoEntity, RangedAtt
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        if(this.hasStatusEffect(StatusEffects.POISON)){
+        float hpPercent = (float) (this.getHealth()/this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).getBaseValue());
+        this.bar.setPercent(MathHelper.clamp(hpPercent, 0.0f, 1.0f));
+//       this.updateBarToPlayers();
+        EduChemMod.LOGGER.info("Chemist Zombie damaged by " + source.getName() + " and damaged by " + amount);
 
-            float hpPercent = (float) (this.getHealth()/this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).getBaseValue());
-            this.bar.setPercent(MathHelper.clamp(hpPercent, 0.0f, 1.0f));
-//            this.updateBarToPlayers();
-
-            return super.damage(source, amount);
-        } else {
-            return super.damage(source, 0.0F);
-        }
+        return super.damage(source, amount);
     }
 
     @Override

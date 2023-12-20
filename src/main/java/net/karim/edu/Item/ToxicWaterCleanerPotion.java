@@ -28,9 +28,9 @@ public class ToxicWaterCleanerPotion extends Item {
         }
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1); // decrements itemStack if user is not in creative mode
-        }
+//        if (!user.getAbilities().creativeMode) {
+//            itemStack.decrement(1); // decrements itemStack if user is not in creative mode
+//        }
 
         return TypedActionResult.success(itemStack, world.isClient());
     }

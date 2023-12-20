@@ -1,0 +1,16 @@
+{
+  "type": "educationmod:chem_table",
+  "ingredients": [
+    {
+      "item": "educationmod:na2co3_elem"
+    },
+    {
+      "item": "educationmod:co2_elem"
+    }
+  ],
+  "output": [
+    {
+      "item": "educationmod:nahco3_elem"
+    }
+  ]
+}
